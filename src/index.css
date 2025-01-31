@@ -4,14 +4,22 @@
 @tailwind utilities;
 
 * {
-  font-family: "Philosopher", sans-serif;
+  font-family: "Roboto", serif;
+}
+
+body {
+  background-color: rgba(7, 106, 200, 0.1);
+  background-image: url('./img/bgHome.png');
 }
 
 .Container {
-  width: 1430px;
+  width: 1470px;
   max-width: 100%;
   margin: 0 auto;
   padding: 0 15px;
+}
+section{
+  overflow: hidden;
 }
 
 .modal2 {
@@ -22,7 +30,6 @@
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
-  /* Скрывает клики, если модал закрыт */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,7 +64,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #A79684;
+  background: #1466B3;
   border-radius: 15px;
 }
 
@@ -67,18 +74,51 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
-.Category__Wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  position: relative;
-  z-index: 4;
-  gap: 50px;
+header,
+footer {
+  width: 100%;
+  background-color: #1466B3;
+  background-image: url('./img/bgLine.png');
 }
 
-.Menu__Wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  position: relative;
-  z-index: 4;
-  gap: 30px;
+
+.headerModalShadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(51, 51, 51, .5);
+  transform: translateX(-100%);
+  transition: all .6s cubic-bezier(0.45, 0.48, 0.75, 0.76) 1s;
+  visibility: visible;
+  height: 100vh;
+  z-index: 1000000;
+}
+
+.headerModal {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 80%;
+  height: 100vh;
+  background-color: #1466B3;
+  padding: 24px;
+  background-image: url('./img/bgLine.png');
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: all 2s ease;
+  z-index: 110000000
+}
+
+.db_shadow {
+  transform: translateX(0);
+  transition: all .6s cubic-bezier(.22, .61, .24, 1) 0s;
+}
+
+.db {
+  transform: translateX(0);
 }

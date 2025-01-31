@@ -44,7 +44,7 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#A79684]">
+    <div className="min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg text-center">
 
         <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
@@ -72,7 +72,7 @@ const Login = () => {
             fullWidth
             color="gray"  // Changed to gray for a neutral button
             onClick={Login}
-            className="bg-black text-white hover:bg-gray-800"
+            className="bg-MainColor text-white hover:bg-gray-800"
           >
             Login
           </Button>

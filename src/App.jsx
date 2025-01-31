@@ -6,6 +6,9 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import AdminLayout from "./layouts/AdminLayout";
 import ProtectedRoute from "./Components/ProtectedRoute"; // Импорт компонента защиты маршрутов
+import './style/Media.css'
+import Dashboard from "./Pages/Dashboard";
+import Superiors from "./Pages/Superiors";
 
 function App() {
   return (
@@ -15,15 +18,16 @@ function App() {
         <Route path="/" element={<AppLayout />}>
           <Route
             element={
-              <ProtectedRoute>
-                <AdminLayout />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <AdminLayout />
+              // </ProtectedRoute>
             }
           >
-
+            <Route path="dashboard" element={<Dashboard />} />
           </Route>
           <Route element={<MainLayout />}>
             <Route index element={<Home />} />
+            <Route path='/superiors' element={<Superiors />} />
 
           </Route>
         </Route>

@@ -1,5 +1,5 @@
 const withMT = require("@material-tailwind/react/utils/withMT");
- 
+
 module.exports = withMT({
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -7,7 +7,11 @@ module.exports = withMT({
     "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        MainColor: "#1466B3", 
+      },
+    },
   },
   plugins: [],
 });
