@@ -11,6 +11,7 @@ import Dashboard from "./Pages/Dashboard";
 import Superiors from "./Pages/Superiors";
 import News from "./Pages/News";
 import NewsItems from "./Pages/NewsItem";
+import Contact from "./Pages/Contact";
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
             <Route path='/superiors' element={<Superiors />} />
             <Route path="/news" element={<News/>}/>
             <Route path="/news/:ID" element={<NewsItems/>}/>
+            <Route path="/contact" element={<Contact/>}/>
+
           </Route>
         </Route>
       </Routes>
