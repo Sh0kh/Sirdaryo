@@ -17,7 +17,7 @@ const Login = () => {
       }
       const response = await axios.post(`/admin/login`, loginData)
       localStorage.setItem('token', response.data.tokens.refresh_token);
-      navigate('/admin/category')
+      navigate('/admin/')
       Swal.fire({
         title: 'Muvaffaqiyatli!',
         icon: 'success',
@@ -48,7 +48,6 @@ const Login = () => {
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg text-center">
 
         <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
-
         <div className="space-y-4">
           <Input
             label="Email"

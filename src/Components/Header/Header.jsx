@@ -76,38 +76,18 @@ export default function Header({ isActiveModal }) {
 
     const menuItems = [
         {
-            title: "Hokimiyat haqida",
-            subItems: ["Rahbariyat", "Hujjatlar", "Qonunlar"],
-            link:['/superiors', "", ""]
+            title: "Rahbariyat",
+            url: '/superiors',
         },
         {
-            title: "Faoliyat",
-            subItems: ["Loyihalar", "Hisobotlar", "Tadbirlar"],
+            title: "Yangiliklar",
+            url: '/news',
         },
         {
-            title: "Quyi tashkilotlar",
-            subItems: ["Mahallalar", "Ta’lim muassasalari", "Korxonalar"],
+            title: "Bog'lanish",
+            url: '/contact',
         },
-        {
-            title: "Mahalliy Kengash",
-            subItems: ["Deputatlar", "Majlislar", "Hujjatlar"],
-        },
-        {
-            title: "Matbuot xizmati",
-            subItems: ["Yangiliklar", "Press-relizlar", "Intervyular"],
-        },
-        {
-            title: "Korrupsiyaga qarshi kurashish",
-            subItems: ["Dasturlar", "Qonunlar", "Ombudsman"],
-        },
-        {
-            title: "Tuman va shaharlar",
-            subItems: ["Toshkent", "Samarqand", "Buxoro"],
-        },
-        {
-            title: "Ochiq ma`lumotlar",
-            subItems: ["Statistika", "Reestrlar", "Hisobotlar"],
-        },
+
     ];
 
     // Обновление времени каждую секунду
@@ -180,12 +160,14 @@ export default function Header({ isActiveModal }) {
                             O‘zbekcha
                         </button>
                     </div>
-                    <div className='logo flex items-center gap-[10px] '>
-                        <img src={logo} alt="Logo" />
-                        <h1 class="w-[200px] font-bold text-[18px] tracking-[0.27px] uppercase text-[rgba(247,247,247,1)] ml-[15px]">
-                            {t('Logo')}
-                        </h1>
-                    </div>
+                    <NavLink to={'/'}>
+                        <div className='logo flex items-center gap-[10px] '>
+                            <img src={logo} alt="Logo" />
+                            <h1 class="w-[200px] font-bold text-[18px] tracking-[0.27px] uppercase text-[rgba(247,247,247,1)] ml-[15px]">
+                                {t('Logo')}
+                            </h1>
+                        </div>
+                    </NavLink>
                     <div className='flex items-center gap-[20px]'>
                         <a className='text-[32px]' href="https://www.facebook.com/Sirdaryohokimligi" target="_blank" rel="noopener noreferrer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396z"></path></svg>
@@ -201,31 +183,33 @@ export default function Header({ isActiveModal }) {
                         </a>
                     </div>
                 </div>
-                <div ref={menuRef} className='header__b w-[100%] flex items-center justify-between pb-[30px] pt-[20px] border-t border-[rgba(247,247,247,0.4)'>
+                <div ref={menuRef} className='header__b w-[100%] flex items-center justify- pb-[30px] pt-[20px] border-t border-[rgba(247,247,247,0.4)'>
                     <div onClick={isActiveModal} className='header__b__burger hidden px-[10px] py-[5px] opacity-[0.8] bg-[white] text-[30px] text-[#000000a4] rounded-[5px]'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.3} d="M3 6h18M3 12h18M3 18h18"></path></svg>
                     </div>
-                    {menuItems.map((item, index) => (
+                    {menuItems?.map((item, index) => (
                         <div key={index} className="relative">
-                            <button
-                                className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
-                                onClick={() => toggleMenu(index)} 
-                            >
-                                {item.title}
-                            </button>
-                            {openMenu === index && (
+                            <NavLink to={item?.url}>
+                                <button
+                                    className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
+                                    onClick={() => toggleMenu(index)}
+                                >
+                                    {item.title}
+                                </button>
+                            </NavLink>
+                            {/* {openMenu === index && (
                                 <div className="absolute left-0 top-full  p-[5px] mt-2 w-[200px] bg-white shadow-lg rounded-lg border border-gray-200 z-[1000]">
                                     {item.subItems.map((subItem, subIndex) => (
                                         <NavLink
                                             key={subIndex}
-                                            href={""}
+                                            href={subItem?.link}
                                             className="block px-4 text-[black] rounded-[5px] py-2 hover:bg-MainColor hover:text-[white] transition-all"
                                         >
-                                            {subItem}
+                                            {subItem?.name}
                                         </NavLink>
                                     ))}
                                 </div>
-                            )}
+                            )} */}
                         </div>
                     ))}
 
