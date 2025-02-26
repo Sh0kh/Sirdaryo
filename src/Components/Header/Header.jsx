@@ -122,7 +122,7 @@ export default function Header({ isActiveModal }) {
     };
 
     return (
-        <header className='Header text-[white]'>
+        <header className='Header text-[white] relative z-50'>
             <div className="Container">
                 <div className='header__t p-[20px] flex items-center justify-between'>
                     <h2 className='header__t__date text-[13px] ml-[25%]'>

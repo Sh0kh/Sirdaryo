@@ -9,6 +9,8 @@ import ProtectedRoute from "./Components/ProtectedRoute"; // Импорт ком
 import './style/Media.css'
 import Dashboard from "./Pages/Dashboard";
 import Superiors from "./Pages/Superiors";
+import News from "./Pages/News";
+import NewsItems from "./Pages/NewsItem";
 
 function App() {
   return (
@@ -28,7 +30,8 @@ function App() {
           <Route element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path='/superiors' element={<Superiors />} />
-
+            <Route path="/news" element={<News/>}/>
+            <Route path="/news/:ID" element={<NewsItems/>}/>
           </Route>
         </Route>
       </Routes>
