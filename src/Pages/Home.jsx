@@ -11,7 +11,7 @@ export default function Home() {
             <Hero/>
             <Owl/>
             <Percent/>
-            {/* <AnimateSwiper/> */}
+            <AnimateSwiper/>
             <StatisticAppeals/>
             <LinksMap/>
         </main>
