@@ -11,13 +11,14 @@ const Login = () => {
 
   const Login = async () => {
     try {
-      const loginData = {
-        phone: login,
-        password: password
-      }
-      const response = await axios.post(`/admin/login`, loginData)
-      localStorage.setItem('token', response.data.tokens.refresh_token);
-      navigate('/admin/')
+      const response = await axios.get(`api/auth/user/login`, {
+        params: {
+          username: login,
+          password: password
+        }
+      })
+      localStorage.setItem('token', response.data.token);      
+      navigate('/admin/dashboard')
       Swal.fire({
         title: 'Muvaffaqiyatli!',
         icon: 'success',

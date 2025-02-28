@@ -5,13 +5,14 @@ import MainLayout from "./layouts/MainLayout";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import AdminLayout from "./layouts/AdminLayout";
-import ProtectedRoute from "./Components/ProtectedRoute"; // Импорт компонента защиты маршрутов
+import ProtectedRoute from "./Components/ProtectedRoute";
 import './style/Media.css'
 import Dashboard from "./Pages/Dashboard";
 import Superiors from "./Pages/Superiors";
 import News from "./Pages/News";
 import NewsItems from "./Pages/NewsItem";
 import Contact from "./Pages/Contact";
+import AdminNews from "./Components/AdminPages/AdminNews";
 
 function App() {
   return (
@@ -21,20 +22,20 @@ function App() {
         <Route path="/" element={<AppLayout />}>
           <Route
             element={
-              // <ProtectedRoute>
-              <AdminLayout />
-              // </ProtectedRoute>
+              <ProtectedRoute>
+                <AdminLayout />
+              </ProtectedRoute>
             }
           >
-            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="admin/dashboard" element={<Dashboard />} />
+            <Route path="admin/news" element={<AdminNews />} />
           </Route>
           <Route element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path='/superiors' element={<Superiors />} />
-            <Route path="/news" element={<News/>}/>
-            <Route path="/news/:ID" element={<NewsItems/>}/>
-            <Route path="/contact" element={<Contact/>}/>
-
+            <Route path="/news" element={<News />} />
+            <Route path="/news/:ID" element={<NewsItems />} />
+            <Route path="/contact" element={<Contact />} />
           </Route>
         </Route>
       </Routes>
