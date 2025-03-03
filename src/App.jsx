@@ -36,7 +36,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path='/superiors' element={<Superiors />} />
             <Route path="/news" element={<News />} />
-            <Route path="/news/:ID" element={<NewsItems />} />
+            <Route path="/news/:id" element={<NewsItems />} />
             <Route path="/contact" element={<Contact />} />
           </Route>
         </Route>

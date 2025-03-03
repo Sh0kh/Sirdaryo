@@ -26,17 +26,22 @@ export default function Hero() {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const getNews = async () => {
     try {
       const response = await axios.get(`/article/findAll`);
-      setData(response?.object || []);
+      console.log("Response:", response);
+      console.log("Response Data:", response.data);
+  
+      // To'g'ri ma'lumotni olish
+      setData(response.data?.object?.content || []);
     } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
     }
   };
+  
+  
 console.log(data);
 
   useEffect(() => {
@@ -64,17 +69,17 @@ console.log(data);
           </div>
           ) : (
             data.map((news) => (
-              <NavLink key={news.id} to={`/news/${news.id}`}>
-                <div className="News__hero__card cursor-pointer bg-[white] rounded-[10px] p-[20px] w-[100%] shadow-xl flex items-start gap-[30px]">
+              <NavLink key={news.id} className="w-[100%]"  onClick={() => localStorage.setItem("newsId", news.id)}  to={`/news/${news.id}`}>
+                <div className="News__hero__card cursor-pointer bg-[white] mb-[10px] rounded-[10px] p-[20px] w-[100%] shadow-xl flex items-start gap-[30px]">
                   <img
                     className="block mx-auto rounded-[10px] w-[300px] h-[200px] object-cover"
-                    src={news.image || "https://via.placeholder.com/300x200"}
+                    src={news?.contentUrl || "https://via.placeholder.com/300x200"}
                     alt="Foto"
                   />
                   <div>
-                    <h2 className="text-MainColor text-[25px] font-bold">{news.title}</h2>
+                    <h2 className="text-MainColor text-[25px] font-bold">{news?.title}</h2>
                     <div className="w-[70%] my-[10px] h-[3px] bg-MainColor"></div>
-                    <p>{news.description}</p>
+                    <p>{news?.description}</p>
                   </div>
                 </div>
               </NavLink>
