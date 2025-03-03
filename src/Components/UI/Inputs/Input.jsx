@@ -1,4 +1,4 @@
-export default function Input({ id, type, placeholder, inputText, value, onChange }) {
+export default function Input({ id, type, placeholder, inputText, value, onChange, name }) {
     return (
         <label htmlFor={id} className="w-full">
             <span className="text-[black] block text-[13px] cursor-pointer">
@@ -10,6 +10,7 @@ export default function Input({ id, type, placeholder, inputText, value, onChang
                 type={type}
                 id={id}
                 value={value}
+                name={name}
                 onChange={onChange} />
         </label>
     )
