@@ -20,6 +20,16 @@ export default function Sidebar() {
                         </span>
                     </button>
                 </NavLink>
+                <NavLink to={'/admin/media'}>
+                    <button className="group w-full mt-[10px] shadow-md duration-500 hover:shadow-xl scale-95 hover:scale-100 flex items-center gap-[10px] border-[2px] rounded-[10px] border-[#E5EFF9] p-[5px] hover:border-[#E6F0F9] hover:bg-[#F0F8FF]">
+                        <svg
+                            className="text-[40px] text-MainColor group-hover:text-[#0077b6] duration-300"
+                            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16"><path fill="currentColor" fillRule="evenodd" d="M13 2.5H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5M3 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm9 9.857L9.5 8l-2.476 2.83L5.5 9L4 10.8V12h8zM6.5 8a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3" clipRule="evenodd"></path></svg>
+                        <span className="text-[#70757b] group-hover:text-[#0077b6] duration-300">
+                            Ijtimoiy tarmoq
+                        </span>
+                    </button>
+                </NavLink>
             </div>
         </div>
     );

@@ -13,6 +13,7 @@ import News from "./Pages/News";
 import NewsItems from "./Pages/NewsItem";
 import Contact from "./Pages/Contact";
 import AdminNews from "./Components/AdminPages/AdminNews";
+import Media from "./Components/AdminPages/Media";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           >
             <Route path="admin/dashboard" element={<Dashboard />} />
             <Route path="admin/news" element={<AdminNews />} />
+            <Route path="admin/media" element={<Media />} />
           </Route>
           <Route element={<MainLayout />}>
             <Route index element={<Home />} />

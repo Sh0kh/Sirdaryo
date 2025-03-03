@@ -5,11 +5,11 @@ import Swal from 'sweetalert2';
 import TextArea from "../../UI/TextArea/TextArea";
 import axios from "axios";
 
-export default function NewsEdit({ isOpen, onClose, data }) {
-    console.log(isOpen)
+export default function NewsEdit({ isOpen, onClose, data, refresh }) {
     const [image, setImage] = useState(null);
-    const [mediaType, setMediaType] = useState(null)
+    const [mediaType, setMediaType] = useState('')
     const [loading, setLoading] = useState(false)
+
     const [url, setUrl] = useState('')
     const [DataUz, setDataUz] = useState({
         titleUz: "",
@@ -24,19 +24,56 @@ export default function NewsEdit({ isOpen, onClose, data }) {
         descriptionRu: ""
     })
 
+
+    const GetByID = async () => {
+        try {
+            const response = await axios(`/article/admin/find/${data}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                }
+            });
+
+            console.log(response?.data?.object);
+            setMediaType(response?.data?.object?.mediaType);
+
+            setDataOz({
+                titleOz: response?.data?.object?.titleKIRIL,
+                descriptionOz: response?.data?.object?.descriptionKIRIL
+            });
+
+            setDataUz({
+                titleUz: response?.data?.object?.titleUZ,
+                descriptionUz: response?.data?.object?.descriptionUZ
+            });
+
+            setDataRu({
+                titleRu: response?.data?.object?.titleRU,
+                descriptionRu: response?.data?.object?.descriptionRU
+            });
+            setUrl(response?.data?.object?.contentURL)
+            
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
+        console.log(file);
+        
         if (file) {
             setImage(file);
         }
     };
-    console.log(data)
 
-    useEffect(()=>{
-        if(data){
-            // setDataUz(titleUz:data?.)
+
+
+
+    useEffect(() => {
+        if (isOpen) {
+            GetByID()
         }
-    },[data])
+    }, [isOpen])
 
 
 
@@ -57,7 +94,7 @@ export default function NewsEdit({ isOpen, onClose, data }) {
                 formData.append("file", image);
             }
 
-            await axios.post(`/article/create`, formData, {
+            await axios.put(`/article/update/${data}`, formData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                     'Content-Type': 'multipart/form-data',
@@ -74,12 +111,7 @@ export default function NewsEdit({ isOpen, onClose, data }) {
                 toast: true,
                 showConfirmButton: false,
             });
-            setDataUz({ titleUz: "", descriptionUz: "" });
-            setDataOz({ titleOz: "", descriptionOz: "" });
-            setDataRu({ titleRu: "", descriptionRu: "" });
-            setMediaType("");
-            setUrl("");
-            setImage(null);
+            refresh()
             onClose()
         } catch (error) {
             Swal.fire({
@@ -141,29 +173,30 @@ export default function NewsEdit({ isOpen, onClose, data }) {
                                 Media type
                             </span>
                             <select
-                                value={mediaType}
+                                value={mediaType || ""}
                                 onChange={(e) => {
                                     setMediaType(e.target.value);
                                 }}
                                 className="py-[5px] w-full px-[10px] rounded-[5px] outline-MainColor border-[2px] border-black text-[black] bg-[white]"
                             >
-                                <option disabled >...</option>
+                                <option value="" disabled>...</option>
                                 <option value="TEXT">So'z</option>
                                 <option value="MEDIA">Ijtimoiy tarmoq</option>
                                 <option value="YOUTUBE_URL">Yotube</option>
                             </select>
+
 
                         </label>
                         <div className="w-full">
                             <input
                                 type="file"
                                 accept="image/*"
-                                id="imageUpload"
+                                id="imageUploadd"
                                 className="hidden"
                                 onChange={handleImageUpload}
                             />
                             <label
-                                htmlFor="imageUpload"
+                                htmlFor="imageUploadd"
                                 className="bg-MainColor w-full text-white px-4 py-[5px] rounded-lg shadow-lg border-2 border-MainColor duration-500 hover:text-MainColor hover:bg-transparent cursor-pointer flex items-center justify-center"
                             >
                                 Foto
