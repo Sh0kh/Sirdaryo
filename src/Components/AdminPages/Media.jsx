@@ -4,34 +4,25 @@ import axios from "axios";
 import ReactLoading from 'react-loading';
 import NewsEdit from "../AdminComponents/News/NewsEdit";
 import NewsDelete from "../AdminComponents/News/NewsDelete";
+import CreateMedia from "../AdminComponents/Media/CreateMedia";
 
-export default function AdminNews() {
+export default function Media() {
     const [createModal, setCreateModal] = useState(false);
     const [editModal, setEditModal] = useState(false)
     const [Id, setId] = useState([])
-    const [currentPage, setCurrentPage] = useState(1);
     const [data, setData] = useState([]);
     const [deleteModal, setDeleteModal] = useState(false)
     const [loading, setLoading] = useState(true);
-    const [totalElements, setTotalElements] = useState(0);
-    const [totalPages, setTotalPages] = useState(0);
-    const itemsPerPage = 10;
 
-    const fetchData = async (page) => {
+    const fetchData = async () => {
         setLoading(true);
         try {
             const response = await axios.get('/article/findAll', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
-                params: {
-                    page: page - 1,
-                    size: itemsPerPage
-                }
             });
             setData(response?.data?.object?.content);
-            setTotalElements(response?.data?.object?.totalElements || 0);
-            setTotalPages(response?.data?.object?.totalPages || 0);
         } catch (error) {
             console.log(error);
         } finally {
@@ -40,14 +31,8 @@ export default function AdminNews() {
     };
 
     useEffect(() => {
-        fetchData(currentPage);
-    }, [currentPage]);
-
-    const handlePageChange = (newPage) => {
-        if (newPage > 0 && newPage <= totalPages) {
-            setCurrentPage(newPage);
-        }
-    };
+        fetchData();
+    }, []);
 
 
     if (loading) {
@@ -62,11 +47,12 @@ export default function AdminNews() {
         <>
             <div className="pt-[75px] pb-[50px]">
                 <div className="Admin__header__wrapper flex justify-between items-center mb-4">
-                    <h1 className="text-2xl font-bold">Yangiliklar</h1>
+                    <h1 className="text-2xl font-bold">Ijtimoiy tarmoq
+                    </h1>
                     <button
                         onClick={() => setCreateModal(true)}
                         className="bg-MainColor text-white px-4 py-2 rounded-lg shadow-lg border-2 border-MainColor duration-500 hover:text-MainColor hover:bg-transparent">
-                        Yangilik yaratish
+                        Yaratish
                     </button>
                 </div>
                 <div className="bg-white w-full rounded-lg shadow-lg overflow-hidden">
@@ -76,16 +62,14 @@ export default function AdminNews() {
                                 <th className="p-3">№</th>
                                 <th className="p-3">Foto</th>
                                 <th className="p-3">Title</th>
-                                <th className="p-3">Info</th>
                                 <th className="p-3">Url</th>
-                                <th className="p-3">Type</th>
                                 <th className="p-3">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {data?.map((news, index) => (
                                 <tr key={news.id} className="border-t hover:bg-gray-100 text-sm md:text-base">
-                                    <td className="p-3">{(currentPage - 1) * itemsPerPage + index + 1}</td>
+                                    <td className="p-3">{ index + 1}</td>
                                     <td className="p-3">
                                         <img src={news.url} alt={news.url} className="w-[80px] h-[80px] object-cover rounded-md" />
                                     </td>
@@ -114,44 +98,10 @@ export default function AdminNews() {
                             ))}
                         </tbody>
                     </table>
-                    <div className="flex justify-center items-center gap-2 p-3 bg-gray-100">
-                        <button
-                            disabled={currentPage === 1}
-                            onClick={() => handlePageChange(currentPage - 1)}
-                            className={`px-3 py-1 rounded-md text-sm ${currentPage === 1 ? "bg-gray-300" : "bg-MainColor text-white hover:bg-blue-600"}`}
-                        >
-                            &laquo;
-                        </button>
-
-                        {/* Номера страниц */}
-                        {Array.from({ length: totalPages }, (_, index) => index + 1).slice(
-                            Math.max(0, currentPage - 3),
-                            Math.min(totalPages, currentPage + 2)
-                        ).map((page) => (
-                            <button
-                                key={page}
-                                onClick={() => handlePageChange(page)}
-                                className={`px-3 py-1 rounded-md text-sm ${currentPage === page ? "bg-blue-600 text-white" : "bg-gray-200 hover:bg-gray-300"}`}
-                            >
-                                {page}
-                            </button>
-                        ))}
-
-                        {/* Следующая страница */}
-                        <button
-                            disabled={currentPage === totalPages || totalPages === 0}
-                            onClick={() => handlePageChange(currentPage + 1)}
-                            className={`px-3 py-1 rounded-md text-sm ${currentPage === totalPages || totalPages === 0 ? "bg-gray-300" : "bg-MainColor text-white hover:bg-blue-600"}`}
-                        >
-                            &raquo;
-                        </button>
-
-                    </div>
-
                 </div>
             </div>
             <NewsDelete refresh={() => fetchData(currentPage)} isOpen={deleteModal} onClose={() => setDeleteModal(false)} data={Id} />
-            <NewsCreate refresh={() => fetchData(currentPage)} isOpen={createModal} onClose={() => setCreateModal(false)} />
+            <CreateMedia fresh={() => fetchData()} isOpen={createModal} onClose={() => setCreateModal(false)} />
             <NewsEdit refresh={() => fetchData(currentPage)} isOpen={editModal} onClose={() => setEditModal(false)} data={Id} />
 
         </>

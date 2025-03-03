@@ -2,26 +2,13 @@ import { useState } from "react";
 import Input from "../../UI/Inputs/Input";
 import BigModal from "../../UI/Modals/BigModal";
 import Swal from 'sweetalert2';
-import TextArea from "../../UI/TextArea/TextArea";
 import axios from "axios";
 
-export default function NewsCreate({ isOpen, onClose, refresh }) {
+export default function CreateMedia({ isOpen, onClose, refresh }) {
     const [image, setImage] = useState(null);
     const [mediaType, setMediaType] = useState(null)
     const [loading, setLoading] = useState(false)
     const [url, setUrl] = useState('')
-    const [DataUz, setDataUz] = useState({
-        titleUz: "",
-        descriptionUz: ""
-    })
-    const [DataOz, setDataOz] = useState({
-        titleOz: "",
-        descriptionOz: ""
-    })
-    const [DataRu, setDataRu] = useState({
-        titleRu: "",
-        descriptionRu: ""
-    })
 
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
@@ -36,19 +23,13 @@ export default function NewsCreate({ isOpen, onClose, refresh }) {
         try {
             const formData = new FormData();
 
-            formData.append("titleUZ", DataUz.titleUz);
-            formData.append("descriptionUZ", DataUz.descriptionUz);
-            formData.append("titleKIRIL", DataOz.titleOz);
-            formData.append("descriptionKIRIL", DataOz.descriptionOz);
-            formData.append("titleRU", DataRu.titleRu);
-            formData.append("descriptionRU", DataRu.descriptionRu);
             formData.append("mediaType", mediaType);
-            formData.append("contentURL", url);
+            formData.append("mediaUrl", url);
             if (image) {
                 formData.append("file", image);
             }
 
-            await axios.post(`/article/create`, formData, {
+            await axios.post(`/media/create`, formData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                     'Content-Type': 'multipart/form-data',
@@ -66,9 +47,6 @@ export default function NewsCreate({ isOpen, onClose, refresh }) {
                 showConfirmButton: false,
             });
             refresh()
-            setDataUz({ titleUz: "", descriptionUz: "" });
-            setDataOz({ titleOz: "", descriptionOz: "" });
-            setDataRu({ titleRu: "", descriptionRu: "" });
             setMediaType("");
             setUrl("");
             setImage(null);
@@ -108,26 +86,14 @@ export default function NewsCreate({ isOpen, onClose, refresh }) {
                 </div>
                 <div className="mt-[10px]">
                     <div className="flex items-center justify-between gap-[10px] w-full">
-                        <Input
-                            value={DataUz.titleUz}
-                            onChange={(e) => setDataUz({ ...DataUz, titleUz: e.target.value })}
-                            inputText={"Nomi (uzb)"} placeholder={"...."} />
-                        <Input
-                            value={DataOz?.titleOz}
-                            onChange={(e) => setDataOz({ ...DataOz, titleOz: e.target.value })}
-                            inputText={"Nomi (узб)"} placeholder={"...."} />
                     </div>
                     <div className="flex items-center justify-between gap-[10px] mt-[10px] w-full">
-                        <Input
-                            value={DataRu?.titleRu}
-                            onChange={(e) => setDataRu({ ...DataRu, titleRu: e.target.value })}
-                            inputText={"Nomi (Russ)"} placeholder={"...."} />
                         <Input
                             value={url}
                             onChange={(e) => setUrl(e.target.value)}
                             inputText={"Havola"} placeholder={"...."} />
                     </div>
-                    <div className="flex items-end justify-between gap-[10px] mt-[10px] w-full">
+                    <div className="flex items-end justify-between gap-[10px] my-[10px] w-full">
                         <label className="w-full">
                             <span className="text-[black] block text-[13px] cursor-pointer">
                                 Media type
@@ -162,22 +128,6 @@ export default function NewsCreate({ isOpen, onClose, refresh }) {
                                 Foto
                             </label>
                         </div>
-                    </div>
-                    <div className="flex items-center justify-between gap-[10px] mt-[10px] w-full">
-                        <TextArea
-                            value={DataUz.descriptionUz}
-                            onChange={(e) => setDataUz({ ...DataUz, descriptionUz: e.target.value })}
-                            inputText={"Malumot (uzb)"} placeholder={"...."} />
-                        <TextArea
-                            value={DataOz?.descriptionOz}
-                            onChange={(e) => setDataOz({ ...DataOz, descriptionOz: e.target.value })}
-                            inputText={"Malumot (узб)"} placeholder={"...."} />
-                    </div>
-                    <div className="flex items-center justify-between gap-[10px] mt-[10px] w-[50%]">
-                        <TextArea
-                            value={DataRu?.descriptionRu}
-                            onChange={(e) => setDataRu({ ...DataRu, descriptionRu: e.target.value })}
-                            inputText={"Malumot (Russ)"} placeholder={"...."} />
                     </div>
                     <button
                         disabled={loading}
