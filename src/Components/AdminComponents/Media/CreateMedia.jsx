@@ -3,6 +3,7 @@ import Input from "../../UI/Inputs/Input";
 import BigModal from "../../UI/Modals/BigModal";
 import Swal from 'sweetalert2';
 import axios from "axios";
+import NormalModal from "../../UI/Modals/NormalModal";
 
 export default function CreateMedia({ isOpen, onClose, refresh }) {
     const [image, setImage] = useState(null);
@@ -69,10 +70,10 @@ export default function CreateMedia({ isOpen, onClose, refresh }) {
     }
 
     return (
-        <BigModal isOpen={isOpen} onClose={onClose}>
+        <NormalModal isOpen={isOpen} onClose={onClose}>
             <div className="p-[20px]">
                 <div className="flex items-center justify-between">
-                    <h1 className="text-[25px] font-bold">Yangilik yaratish</h1>
+                    <h1 className="text-[25px] font-bold">Ijtimoiy tarmoq yaratish</h1>
                     <button onClick={onClose}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14">
                             <path
@@ -137,6 +138,6 @@ export default function CreateMedia({ isOpen, onClose, refresh }) {
                     </button>
                 </div>
             </div>
-        </BigModal>
+        </NormalModal>
     );
 }

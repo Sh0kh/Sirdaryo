@@ -4,8 +4,9 @@ import axios from "axios";
 import ReactLoading from 'react-loading';
 import NewsEdit from "../AdminComponents/News/NewsEdit";
 import NewsDelete from "../AdminComponents/News/NewsDelete";
+import PersonCreate from "../AdminComponents/Person/PersonCreate";
 
-export default function AdminNews() {
+export default function Person() {
     const [createModal, setCreateModal] = useState(false);
     const [editModal, setEditModal] = useState(false)
     const [Id, setId] = useState([])
@@ -62,11 +63,11 @@ export default function AdminNews() {
         <>
             <div className="pt-[75px] pb-[50px]">
                 <div className="Admin__header__wrapper flex justify-between items-center mb-4">
-                    <h1 className="text-2xl font-bold">Yangiliklar</h1>
+                    <h1 className="text-2xl font-bold">Rahbariyat</h1>
                     <button
                         onClick={() => setCreateModal(true)}
                         className="bg-MainColor text-white px-4 py-2 rounded-lg shadow-lg border-2 border-MainColor duration-500 hover:text-MainColor hover:bg-transparent">
-                        Yangilik yaratish
+                        Rahbariyat yaratish
                     </button>
                 </div>
                 <div className="bg-white w-full rounded-lg shadow-lg overflow-hidden">
@@ -151,7 +152,7 @@ export default function AdminNews() {
                 </div>
             </div>
             <NewsDelete refresh={() => fetchData(currentPage)} isOpen={deleteModal} onClose={() => setDeleteModal(false)} data={Id} />
-            <NewsCreate refresh={() => fetchData(currentPage)} isOpen={createModal} onClose={() => setCreateModal(false)} />
+            <PersonCreate refresh={() => fetchData(currentPage)} isOpen={createModal} onClose={() => setCreateModal(false)} />
             <NewsEdit refresh={() => fetchData(currentPage)} isOpen={editModal} onClose={() => setEditModal(false)} data={Id} />
 
         </>
