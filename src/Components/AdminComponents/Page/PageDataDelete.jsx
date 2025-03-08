@@ -3,11 +3,11 @@ import SmallModal from "../../UI/Modals/SmallModal";
 import Swal from 'sweetalert2';
 
 
-export default function PartyDelete({ isOpen, onClose, data, refresh }) {
+export default function PageDataDelete({ isOpen, onClose, data, refresh }) {
 
     const deleteNews = async () => {
         try {
-            await axios.delete(`/party/delete/${data}`, {
+            await axios.delete(`/data/delete/${data}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 }
@@ -22,7 +22,6 @@ export default function PartyDelete({ isOpen, onClose, data, refresh }) {
                 toast: true,
                 showConfirmButton: false,
             });
-
             refresh()
             onClose()
         } catch (error) {
