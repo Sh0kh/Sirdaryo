@@ -6,7 +6,11 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap-trial/ScrollTrigger';
 import { NavLink } from 'react-router-dom';
+
+import axios from 'axios';
+
 import HeaderVison from './HeaderVison';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +18,7 @@ export default function Header({ isActiveModal }) {
     const { t, i18n } = useTranslation();
     const [currentTime, setCurrentTime] = useState('');
     const [openMenu, setOpenMenu] = useState(null);
+    const [data, setData] = useState([])
     const menuRef = useRef(null);
     const [visionModal, setVisionModal] = useState(false);
     const modalRef1 = useRef(null);
@@ -77,23 +82,18 @@ export default function Header({ isActiveModal }) {
     }, []);
 
 
-    const menuItems = [
-        {
-            title: "Rahbariyat",
-            url: '/superiors',
-        },
-        {
-            title: "Yangiliklar",
-            url: '/news',
-        },
-        {
-            title: "Bog'lanish",
-            url: '/contact',
-        },
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(`/menu/getAll`)
+            setData(response?.data?.object)
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
-    ];
-
-    // Обновление времени каждую секунду
+    useEffect(() => {
+        fetchData()
+    }, [])
     useEffect(() => {
         updateTime();
         const interval = setInterval(updateTime, 1000);
@@ -196,35 +196,59 @@ export default function Header({ isActiveModal }) {
                         </a>
                     </div>
                 </div>
-                <div ref={menuRef} className='header__b w-[100%] flex items-center justify- pb-[30px] pt-[20px] border-t border-[rgba(247,247,247,0.4)'>
+                <div ref={menuRef} className='header__b w-[100%] flex items-center justify- pb-[20px] pt-[20px] border-t border-[rgba(247,247,247,0.4)'>
                     <div onClick={isActiveModal} className='header__b__burger hidden px-[10px] py-[5px] opacity-[0.8] bg-[white] text-[30px] text-[#000000a4] rounded-[5px]'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.3} d="M3 6h18M3 12h18M3 18h18"></path></svg>
                     </div>
-                    {menuItems?.map((item, index) => (
+
+                    {data?.map((item, index) => (
                         <div key={index} className="relative">
                             <NavLink to={item?.url}>
                                 <button
                                     className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
                                     onClick={() => toggleMenu(index)}
                                 >
-                                    {item.title}
+                                    {item?.menu?.name}
                                 </button>
                             </NavLink>
-                            {/* {openMenu === index && (
-                                <div className="absolute left-0 top-full  p-[5px] mt-2 w-[200px] bg-white shadow-lg rounded-lg border border-gray-200 z-[1000]">
-                                    {item.subItems.map((subItem, subIndex) => (
+                            {openMenu === index && (
+                                <div className="absolute left-0 top-[60px]  p-[5px] mt-2 w-[200px] bg-white shadow-lg rounded-lg border border-gray-200 z-[1000]">
+                                    {item?.subMenus.map((subItem, subIndex) => (
                                         <NavLink
                                             key={subIndex}
-                                            href={subItem?.link}
+                                            to={`/sahifa/${subItem?.id}`}
                                             className="block px-4 text-[black] rounded-[5px] py-2 hover:bg-MainColor hover:text-[white] transition-all"
                                         >
                                             {subItem?.name}
                                         </NavLink>
                                     ))}
                                 </div>
-                            )} */}
+                            )}
                         </div>
                     ))}
+
+
+                    <NavLink to={'/superiors'}>
+                        <button
+                            className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
+                        >
+                            Rahbariyat
+                        </button>
+                    </NavLink>
+                    <NavLink to={'/news'}>
+                        <button
+                            className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
+                        >
+                            Yangiliklar
+                        </button>
+                    </NavLink>
+                    <NavLink to={'/contact'}>
+                        <button
+                            className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
+                        >
+                            Bog'lanish
+                        </button>
+                    </NavLink>
 
                 </div>
             </div>
