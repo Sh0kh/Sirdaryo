@@ -12,6 +12,13 @@ body {
   background-image: url('./img/bgHome.png');
 }
 
+.theme-dark {
+  filter: grayscale(100%);
+}
+.theme-gray {
+  filter: grayscale(100%) invert(100%);
+}
+
 .Container {
   width: 1470px;
   max-width: 100%;

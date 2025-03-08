@@ -36,8 +36,7 @@ export default function AnimateSwiper() {
                         modifier: 2.5,
                         slideShadows: true,
                     }}
-                    pagination={{ clickable: true }}
-                    modules={[EffectCoverflow, Pagination, Autoplay]}
+                    modules={[EffectCoverflow, Autoplay]}
                     className="pb-6"
                 >
                     {slides.map((slide, index) => (

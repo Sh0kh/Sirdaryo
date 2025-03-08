@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap-trial/ScrollTrigger';
 import { NavLink } from 'react-router-dom';
+import HeaderVison from './HeaderVison';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +15,8 @@ export default function Header({ isActiveModal }) {
     const [currentTime, setCurrentTime] = useState('');
     const [openMenu, setOpenMenu] = useState(null);
     const menuRef = useRef(null);
+    const [visionModal, setVisionModal] = useState(false);
+    const modalRef1 = useRef(null);
 
     useGSAP(() => {
         gsap.fromTo('.Header',
@@ -100,7 +103,17 @@ export default function Header({ isActiveModal }) {
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
     };
-
+    useEffect(() => {
+        const handleClickOutside2 = (e) => {
+            if (modalRef1.current && !modalRef1.current.contains(e.target)) {
+                setVisionModal(false);
+            }
+        };
+        document.addEventListener('click', handleClickOutside2);
+        return () => {
+            document.removeEventListener('click', handleClickOutside2);
+        };
+    }, []);
     return (
         <header className='Header text-[white] relative z-50'>
             <div className="Container">
@@ -108,13 +121,13 @@ export default function Header({ isActiveModal }) {
                     <h2 className='header__t__date text-[13px] ml-[25%]'>
                         {currentTime}
                     </h2>
-                    <div className='flex items-center gap-[10px] cursor-pointer'>
+                    <div   onClick={(e) => { e.stopPropagation(); setVisionModal(prev => !prev); }} className='flex items-center gap-[10px] cursor-pointer'>
                         <svg className='text-[25px]' xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"></path></svg>
                         <h2 className='hover:underline text-[13px]'>
-                            Ko'zi ojizlar uchun
+                        {t('eye-none')}
                         </h2>
                     </div>
-                    <button className='text-[25px]'>
+                    <button className='text-[25px]' >
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14"></path></svg>
                     </button>
                     <div className="header__t__lan flex items-center gap-[15px]">
@@ -215,6 +228,7 @@ export default function Header({ isActiveModal }) {
 
                 </div>
             </div>
+          <HeaderVison  isOpen={visionModal} ref={modalRef1} />
         </header>
     );
 }
