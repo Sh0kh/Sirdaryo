@@ -1,5 +1,15 @@
 {
     "welcome": "Salom",
-    "language": "Язык"
+    "language": "Язык",
+    "Logo": "Guliston shahar hokimligi",
+    "Adress-logo":"Manzil",
+    "Time-work": "Ish vaqti",
+    "Phone-number":"Qabulxona telefoni",
+    "Time-orgin":"Dushanba - Juma, 9:00 - 18:00, Tushlik 13:00-14:00",
+    "New-adress":"120100, Guliston shahar, Islom Karimov ko'chasi 60 uy.",
+    "Bus-adress":"(2, 2, 12-автобуслар, `Темир йўл бекати - Университет` йўналишидаги йўналишли таксиларнинг 'Юрт байроғи майдони' бекати",
+    "Map":"Xarita",
+    "web-map":"Sayt xaritasi",
+    "eye-none":"Ko'zi ojizlar uchun"
   }
   
