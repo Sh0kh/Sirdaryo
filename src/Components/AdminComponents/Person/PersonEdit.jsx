@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../../UI/Inputs/Input";
 import BigModal from "../../UI/Modals/BigModal";
 import Swal from 'sweetalert2';
 import TextArea from "../../UI/TextArea/TextArea";
 import axios from "axios";
 
-export default function PersonCreate({ isOpen, onClose, refresh }) {
+export default function PersonEdit({ isOpen, onClose, refresh, ID }) {
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         obligationRU: "",
@@ -36,6 +36,50 @@ export default function PersonCreate({ isOpen, onClose, refresh }) {
         setFormData((prev) => ({ ...prev, file: e.target.files[0] }));
     };
 
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(`/api/person/admin/find/${ID}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+    
+            if (response.data.success && response.data.object) {
+                const fetchedData = response.data.object;
+    
+                setFormData({
+                    obligationRU: fetchedData.obligationRU || "",
+                    receptionDateTimes: fetchedData.receptionDateTimes || "",
+                    biographyLatin: fetchedData.biographyLatin || "",
+                    activityKIRIL: fetchedData.activityKIRIL || "",
+                    activityRU: fetchedData.activityRU || "",
+                    fullName: fetchedData.fullName || "",
+                    biographyRU: fetchedData.biographyRU || "",
+                    activityLATIN: fetchedData.activityLATIN || "",
+                    phoneNumber: fetchedData.phoneNumber || "",
+                    obligationKIRIL: fetchedData.obligationKIRIL || "",
+                    partyName: fetchedData.partyName || "",
+                    position: fetchedData.position || "",
+                    category: fetchedData.category || "",
+                    obligationLATIN: fetchedData.obligationLATIN || "",
+                    biographyKIRIL: fetchedData.biographyKIRIL || "",
+                    order: fetchedData.order || 0,
+                    file: null, // Файл нужно загружать отдельно
+                });
+            }
+        } catch (error) {
+            console.error("Ошибка при загрузке данных:", error);
+        }
+    };
+    
+
+
+    useEffect(() => {
+        if (isOpen) {
+            fetchData()
+        }
+    }, [isOpen])
+
     const handleSubmit = async () => {
         setLoading(true)
         const data = new FormData();
@@ -45,10 +89,9 @@ export default function PersonCreate({ isOpen, onClose, refresh }) {
             }
         });
 
-        console.log(data)
 
         try {
-            await axios.post(`/api/person/create`, formData, {
+            await axios.put(`/api/person/update/${ID}`, formData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                     'Content-Type': 'multipart/form-data',
@@ -107,7 +150,7 @@ export default function PersonCreate({ isOpen, onClose, refresh }) {
         <BigModal isOpen={isOpen} onClose={onClose}>
             <div className="p-[20px] overflow-y-auto">
                 <div className="flex items-center justify-between">
-                    <h1 className="text-[25px] font-bold">Rahbariyat yaratish</h1>
+                    <h1 className="text-[25px] font-bold">Rahbariyat o'zgartirish</h1>
                     <button onClick={onClose}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14">
                             <path
@@ -255,7 +298,7 @@ export default function PersonCreate({ isOpen, onClose, refresh }) {
                         disabled={loading}
                         onClick={handleSubmit}
                         className={`w-full px-4 py-2 rounded-lg shadow-lg border-2 duration-500 ${loading ? 'bg-gray-400 border-gray-400 text-white cursor-not-allowed' : 'bg-MainColor border-MainColor text-white hover:text-MainColor hover:bg-transparent'}`}>
-                        {loading ? 'Yaratilmoqda...' : 'Yaratish'}
+                        {loading ? 'Yaratilmoqda...' : 'o`zgartirish'}
                     </button>
                 </div>
             </div>

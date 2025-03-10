@@ -101,7 +101,10 @@ export default function Header({ isActiveModal }) {
     }, [i18n.language]);
 
     const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng);
+        i18n.changeLanguage(lng).then(() => {
+            axios.defaults.headers.common['Accept-Language'] = lng; // Обновляем язык в axios
+            window.location.reload(); // Перезагружаем страницу
+        });
     };
     useEffect(() => {
         const handleClickOutside2 = (e) => {
@@ -121,10 +124,10 @@ export default function Header({ isActiveModal }) {
                     <h2 className='header__t__date text-[13px] ml-[25%]'>
                         {currentTime}
                     </h2>
-                    <div   onClick={(e) => { e.stopPropagation(); setVisionModal(prev => !prev); }} className='flex items-center gap-[10px] cursor-pointer'>
+                    <div onClick={(e) => { e.stopPropagation(); setVisionModal(prev => !prev); }} className='flex items-center gap-[10px] cursor-pointer'>
                         <svg className='text-[25px]' xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"></path></svg>
                         <h2 className='hover:underline text-[13px]'>
-                        {t('eye-none')}
+                            {t('eye-none')}
                         </h2>
                     </div>
                     <button className='text-[25px]' >
@@ -242,6 +245,20 @@ export default function Header({ isActiveModal }) {
                             Yangiliklar
                         </button>
                     </NavLink>
+                    <NavLink to={'/koruption'}>
+                        <button
+                            className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
+                        >
+                            Korrupsiyaga qarshi kurashish
+                        </button>
+                    </NavLink>
+                    <NavLink to={'/ochiq-malumot'}>
+                        <button
+                            className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
+                        >
+                            Ochiq ma'lumot
+                        </button>
+                    </NavLink>
                     <NavLink to={'/contact'}>
                         <button
                             className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
@@ -252,7 +269,7 @@ export default function Header({ isActiveModal }) {
 
                 </div>
             </div>
-          <HeaderVison  isOpen={visionModal} ref={modalRef1} />
+            <HeaderVison isOpen={visionModal} ref={modalRef1} />
         </header>
     );
 }

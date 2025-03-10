@@ -10,6 +10,7 @@ export default function NewsCreate({ isOpen, onClose, refresh }) {
     const [mediaType, setMediaType] = useState(null)
     const [loading, setLoading] = useState(false)
     const [url, setUrl] = useState('')
+    const [show, setShow] = useState(false)
     const [DataUz, setDataUz] = useState({
         titleUz: "",
         descriptionUz: ""
@@ -44,6 +45,8 @@ export default function NewsCreate({ isOpen, onClose, refresh }) {
             formData.append("descriptionRU", DataRu.descriptionRu);
             formData.append("mediaType", mediaType);
             formData.append("contentURL", url);
+            formData.append("show", show);
+
             if (image) {
                 formData.append("file", image);
             }
@@ -72,6 +75,7 @@ export default function NewsCreate({ isOpen, onClose, refresh }) {
             setMediaType("");
             setUrl("");
             setImage(null);
+            setShow(false   )
             onClose()
         } catch (error) {
             Swal.fire({
@@ -173,11 +177,23 @@ export default function NewsCreate({ isOpen, onClose, refresh }) {
                             onChange={(e) => setDataOz({ ...DataOz, descriptionOz: e.target.value })}
                             inputText={"Malumot (узб)"} placeholder={"...."} />
                     </div>
-                    <div className="flex items-center justify-between gap-[10px] mt-[10px] w-[50%]">
+                    <div className="flex items-start justify-between gap-[10px] mt-[10px] w-[100%]">
                         <TextArea
+
                             value={DataRu?.descriptionRu}
                             onChange={(e) => setDataRu({ ...DataRu, descriptionRu: e.target.value })}
                             inputText={"Malumot (Russ)"} placeholder={"...."} />
+                        <label className="w-full">
+                            <span className="block">
+                                Caruselga qo'shish
+                            </span>
+                            <input
+                                checked={show}
+                                onChange={(e) => setShow(e.target.checked)}
+                                className="w-[30px] h-[30px]"
+                                type="checkbox"
+                            />
+                        </label>
                     </div>
                     <button
                         disabled={loading}

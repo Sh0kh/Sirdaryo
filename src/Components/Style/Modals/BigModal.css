@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
 .BigModal.open {
@@ -22,6 +23,7 @@
     transition: right 0.3s ease-in-out;
     border-radius: 5px;
     overflow-y: auto;
+    height: 90%;
 }
 
 @media(max-width:850px) {

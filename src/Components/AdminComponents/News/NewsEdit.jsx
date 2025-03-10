@@ -9,6 +9,8 @@ export default function NewsEdit({ isOpen, onClose, data, refresh }) {
     const [image, setImage] = useState(null);
     const [mediaType, setMediaType] = useState('')
     const [loading, setLoading] = useState(false)
+    const [show, setShow] = useState(false)
+
 
     const [url, setUrl] = useState('')
     const [DataUz, setDataUz] = useState({
@@ -33,9 +35,9 @@ export default function NewsEdit({ isOpen, onClose, data, refresh }) {
                 }
             });
 
-            console.log(response?.data?.object);
             setMediaType(response?.data?.object?.mediaType);
-
+            setShow(response?.data?.object?.show)
+            console.log(response?.data?.object?.show)
             setDataOz({
                 titleOz: response?.data?.object?.titleKIRIL,
                 descriptionOz: response?.data?.object?.descriptionKIRIL
@@ -51,7 +53,7 @@ export default function NewsEdit({ isOpen, onClose, data, refresh }) {
                 descriptionRu: response?.data?.object?.descriptionRU
             });
             setUrl(response?.data?.object?.contentURL)
-            
+
         } catch (error) {
             console.log(error);
         }
@@ -60,7 +62,7 @@ export default function NewsEdit({ isOpen, onClose, data, refresh }) {
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
         console.log(file);
-        
+
         if (file) {
             setImage(file);
         }
@@ -90,6 +92,7 @@ export default function NewsEdit({ isOpen, onClose, data, refresh }) {
             formData.append("descriptionRU", DataRu.descriptionRu);
             formData.append("mediaType", mediaType);
             formData.append("contentURL", url);
+            formData.append("show", show);
             if (image) {
                 formData.append("file", image);
             }
@@ -213,11 +216,22 @@ export default function NewsEdit({ isOpen, onClose, data, refresh }) {
                             onChange={(e) => setDataOz({ ...DataOz, descriptionOz: e.target.value })}
                             inputText={"Malumot (узб)"} placeholder={"...."} />
                     </div>
-                    <div className="flex items-center justify-between gap-[10px] mt-[10px] w-[50%]">
+                    <div className="flex items-center justify-between gap-[10px] mt-[10px] w-[100%]">
                         <TextArea
                             value={DataRu?.descriptionRu}
                             onChange={(e) => setDataRu({ ...DataRu, descriptionRu: e.target.value })}
                             inputText={"Malumot (Russ)"} placeholder={"...."} />
+                        <label className="w-full">
+                            <span className="block">
+                                Caruselga qo'shish
+                            </span>
+                            <input
+                                checked={show}
+                                onChange={(e) => setShow(e.target.checked)}
+                                className="w-[30px] h-[30px]"
+                                type="checkbox"
+                            />
+                        </label>
                     </div>
                     <button
                         disabled={loading}
