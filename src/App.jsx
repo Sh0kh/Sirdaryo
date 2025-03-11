@@ -14,14 +14,10 @@ import NewsItems from "./Pages/NewsItem";
 import Contact from "./Pages/Contact";
 import AdminNews from "./Components/AdminPages/AdminNews";
 import Media from "./Components/AdminPages/Media";
-import Partiya from "./Components/AdminPages/Partiya";
 import Person from "./Components/AdminPages/Person";
 import Rekvizit from "./Pages/Rekvizit";
 import UserRec from "./Pages/UserRec";
 import OrgStructure from "./Pages/OrgStructure";
-import AdminRekvizits from "./Components/AdminPages/AdminRekvizits";
-import AdminUserRec from "./Components/AdminPages/AdminUserRec";
-import AdminOrgStructure from "./Components/AdminPages/AdminOrgStructure";
 import Menu from "./Components/AdminPages/Menu";
 import SubMenu from "./Components/AdminPages/SubMenu";
 import PageCreate from "./Components/AdminPages/PageCreate";
@@ -33,6 +29,8 @@ import ErrorPage from "./Pages/ErrorPage";
 import Koruption from "./Pages/Koruption";
 import OpenData from "./Pages/OpenData";
 import ApparatWorkers from "./Pages/ApparatWorkers";
+import AdminOpenData from "./Components/AdminPages/AdminOpenData";
+import AdminKoruption from "./Components/AdminPages/AdminKoruption";
 
 function App() {
   return (
@@ -51,18 +49,15 @@ function App() {
             <Route path="admin/dashboard" element={<Dashboard />} />
             <Route path="admin/news" element={<AdminNews />} />
             <Route path="admin/media" element={<Media />} />
-            <Route path="admin/party" element={<Partiya />} />
             <Route path="admin/person" element={<Person />} />
-            <Route path="admin/rekvizits" element={<AdminRekvizits />} />
-            <Route path="admin/userRec" element={<AdminUserRec />} />
-            <Route path="admin/orgStructure" element={<AdminOrgStructure />} />
             <Route path='admin/menu' element={<Menu />} />
             <Route path="admin/menu/:ID/:name" element={<SubMenu />} />
             <Route path="admin/statistics" element={<Statistics />} />
-
             <Route path="/admin/create/:ID" element={<PageCreate />} />
             <Route path="/admin/edit/:ID" element={<PageEdit />} />
             <Route path="/admin/page/:ID" element={<SubMenuData />} />
+            <Route path="/admin/open-data" element={<AdminOpenData />} />
+            <Route path="/admin/koruption" element={<AdminKoruption />} />
 
           </Route>
           <Route element={<MainLayout />}>

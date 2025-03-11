@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-import NewsCreate from "../AdminComponents/News/NewsCreate";
 import axios from "axios";
 import ReactLoading from 'react-loading';
-import NewsEdit from "../AdminComponents/News/NewsEdit";
-import NewsDelete from "../AdminComponents/News/NewsDelete";
 import PersonCreate from "../AdminComponents/Person/PersonCreate";
 import PersonEdit from "../AdminComponents/Person/PersonEdit";
 import PersonDelete from "../AdminComponents/Person/PersonDelete";
