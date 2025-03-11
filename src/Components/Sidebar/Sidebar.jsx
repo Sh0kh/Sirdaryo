@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { Accordion, AccordionHeader, AccordionBody } from "@material-tailwind/react";
 import { useState } from "react";
+import foto from '../../img/logo.jpg'
 export default function Sidebar() {
 
     const [open, setOpen] = useState(0);
@@ -11,8 +12,11 @@ export default function Sidebar() {
 
     return (
         <div className="h-[97%] w-[300px] shadow-2xl bg-white fixed mt-[10px] ml-[10px] p-[10px] rounded-[10px]">
-            <div className="w-full h-[100px] rounded-[10px] bg-[#ebebebfc] flex items-center justify-center cursor-pointer hover:bg-[#d6d6d6] duration-300">
+            {/* <div className="w-full h-[100px] rounded-[10px] bg-[#ebebebfc] flex items-center justify-center cursor-pointer hover:bg-[#d6d6d6] duration-300">
                 <h2 className="text-[20px] font-semibold">Logo</h2>
+            </div> */}
+            <div>
+                <img className="rounded-[10px]" src={foto} alt="" />
             </div>
             <div className="mt-[30px]">
                 <NavLink to={'/admin/dashboard'}>

@@ -229,13 +229,18 @@ export default function Header({ isActiveModal }) {
                             )}
                         </div>
                     ))}
-
-
                     <NavLink to={'/superiors'}>
                         <button
                             className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
                         >
                             Rahbariyat
+                        </button>
+                    </NavLink>
+                    <NavLink to={'/apparat-xodimlari'}>
+                        <button
+                            className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
+                        >
+                            Apparat xodimlari
                         </button>
                     </NavLink>
                     <NavLink to={'/news'}>
@@ -266,7 +271,6 @@ export default function Header({ isActiveModal }) {
                             Bog'lanish
                         </button>
                     </NavLink>
-
                 </div>
             </div>
             <HeaderVison isOpen={visionModal} ref={modalRef1} />

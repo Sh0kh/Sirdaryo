@@ -146,3 +146,12 @@ footer {
 .animate_swiper_card{
   background-color: rgba(7, 106, 200, 0.5) url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRinA2sqt0LPEvrxC6Mbpn5qnIEKS1wB58Y8A&s);
 }
+.Page table{
+  /* width: 100% !important; */
+  margin: 0 auto !important; 
+  float: none !important;
+}
+.fr-wrapper {
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+}

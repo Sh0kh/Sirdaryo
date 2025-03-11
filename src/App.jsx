@@ -32,6 +32,7 @@ import Statistics from "./Components/AdminPages/Statistics";
 import ErrorPage from "./Pages/ErrorPage";
 import Koruption from "./Pages/Koruption";
 import OpenData from "./Pages/OpenData";
+import ApparatWorkers from "./Pages/ApparatWorkers";
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
           <Route element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path='/superiors' element={<Superiors />} />
+            <Route path='/apparat-xodimlari' element={<ApparatWorkers />} />
             <Route path="/news" element={<News />} />
             <Route path="/koruption" element={<Koruption />} />
             <Route path="/ochiq-malumot" element={<OpenData />} />
