@@ -2,10 +2,11 @@
 import React from "react";
 export default function ContactHero() {
   return (
-    <section>
+    <section className={'mt-[30px]'}>
       <div className="Container ">
-        <h1 className="text-[#6c757d] mt-[40px] ml-[20px] " >Asosiy /
-          Aloqa</h1>
+        <h1 className="border-l-MainColor mb-[30px] border-l-[3px] pl-[10px] text-[28px] font-bold text-[#1F1F1F]">
+          Bog'lanish
+        </h1>
         <div className="contact_wr   mt-[20px] flex items-start gap-[30px] ">
           <div className="w-[100%] p-[20px] bg-[white] rounded-[10px]">
             <h2 className='text-[18px] font-bold mt-[30px]'>
@@ -95,7 +96,7 @@ export default function ContactHero() {
           </div>
           <div className="m-w-[912] w-full h-[500px] bg-[white] p-[20px] rounded-[10px]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48297.060628467254!2d68.67272600927734!3d40.83748920806283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ade82acb853cb1%3A0xab522d4ebb3e69d!2sSirdaryo%2C%20Sirdaryo%20viloyati!5e0!3m2!1suz!2s!4v1740574167772!5m2!1suz!2s"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2931.542367733867!2d68.77849627589138!3d40.4915254714277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b2073345bb68b5%3A0xa4fb6a9dd9056c19!2sGuliston%20shahar!5e1!3m2!1sru!2s!4v1741610228473!5m2!1sru!2s"
               width="100%"
               height="100%"
               style={{ border: "0" }}

@@ -33,7 +33,7 @@ export default function Hero() {
         try {
             const response = await axios.get('/api/person/getAll', {
                 params: {
-                    category: 'RAHBARIYAT'
+                    category: 'APPARAT_XODIMLARI'
                 }
             })
             setData(response?.data?.object?.content)
@@ -61,7 +61,7 @@ export default function Hero() {
         <section className="SuperiorsHero  py-[30px]">
             <div className="Container">
                 <h1 className="border-l-MainColor mb-[30px] border-l-[3px] pl-[10px] text-[28px] font-bold text-[#1F1F1F]">
-                    Rahbariyat
+                    Apparat xodimlari
                 </h1>
                 {data?.length > 0 ? (
                     <div className="flex items-center flex-col gap-[30px]">

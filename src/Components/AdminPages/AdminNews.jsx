@@ -20,7 +20,7 @@ export default function AdminNews() {
     const fetchData = async (page) => {
         setLoading(true);
         try {
-            const response = await axios.get('/article/findAll', {
+            const response = await axios.get('/article/admin/findAll', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import FroalaEditorComponent from "react-froala-wysiwyg";
 
-// Подключаем ВСЕ плагины
 import "froala-editor/js/plugins/align.min.js";
 import "froala-editor/js/plugins/char_counter.min.js";
 import "froala-editor/js/plugins/code_beautifier.min.js";
@@ -40,19 +39,114 @@ import "froala-editor/css/plugins/table.min.css";
 import "froala-editor/css/plugins/colors.min.css";
 import "froala-editor/css/plugins/code_view.min.css";
 import "froala-editor/css/plugins/video.min.css";
+import axios from "axios";
 
-export default function RichBox({ value, onChange }) {
+
+// Компонент модального окна загрузки
+const LoadingModal = ({ isOpen }) => {
+    if (!isOpen) return null;
+
+    return (
+        <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 9999
+        }}>
+            <div style={{
+                backgroundColor: 'white',
+                padding: '20px 40px',
+                borderRadius: '8px',
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                textAlign: 'center'
+            }}>
+                <div style={{ marginBottom: '15px' }}>
+                    <div style={{
+                        border: '4px solid #f3f3f3',
+                        borderTop: '4px solid #3498db',
+                        borderRadius: '50%',
+                        width: '30px',
+                        height: '30px',
+                        animation: 'spin 2s linear infinite',
+                        margin: '0 auto'
+                    }}></div>
+                </div>
+                <p style={{ fontSize: '16px', margin: 0 }}>Загрузка...</p>
+            </div>
+            <style jsx>{`
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `}</style>
+        </div>
+    );
+};
+
+export default function RichBox({ value, onChange, FileArr }) {
+    const [isLoading, setIsLoading] = useState(false);
+
+
+    const handleImageUpload = (files) => {
+        return new Promise((resolve, reject) => {
+            if (!files.length) {
+                reject('No files selected');
+                return;
+            }
+
+            // Показываем модальное окно загрузки
+            setIsLoading(true);
+            const formData = new FormData();
+            formData.append('file', files[0]);
+
+            axios.post('/data/media/upload', formData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+                .then(response => {
+                    // Скрываем модальное окно загрузки
+
+                    setIsLoading(false);
+
+                    if (response.data) {
+                        const newFileId = response?.data?.object?.id;
+                        resolve(response?.data?.object?.mediaUrl);
+                        console?.log(response?.data?.object?.mediaUrl)
+                        FileArr(prev => [...prev, newFileId])
+                    } else {
+                        reject('Invalid response from server');
+                    }
+                })
+                .catch(error => {
+                    // Скрываем модальное окно загрузки в случае ошибки
+                    setIsLoading(false);
+                    console.error('Error uploading image:', error);
+                    reject(error);
+                });
+        });
+    };
 
     return (
         <div>
+            {/* Модальное окно загрузки */}
+            <LoadingModal isOpen={isLoading} />
+
             <FroalaEditorComponent
                 tag="textarea"
                 model={value}
-                onModelChange={onChange} // Обновляем состояние
+                onModelChange={onChange}
                 config={{
                     placeholderText: "Начни писать...",
                     height: 400,
-                    theme: "gray", // Темная тема можно "gray", "red", "blue" и т.д.
+                    theme: "gray",
                     toolbarSticky: true,
                     toolbarButtons: [
                         "undo", "redo", "|",
@@ -71,11 +165,42 @@ export default function RichBox({ value, onChange }) {
                         "quickInsert", "quote", "save", "specialCharacters", "table",
                         "url", "video", "wordPaste"
                     ],
+                    // Изменяем настройки загрузки изображений
                     imageUpload: true,
-                    imageUploadMethod: "base64",
-                    imagePaste: true,
-                    imageDefaultWidth: 300,
+                    imageUploadMethod: 'POST',
+                    imageUploadParam: 'image',
+                    imageUploadURL: null, // Отключаем встроенную отправку Froala
+                    imageUploadParams: {}, // Дополнительные параметры для запроса
                     imageAllowedTypes: ["jpeg", "jpg", "png", "gif", "webp"],
+
+                    // Используем события для перехвата загрузки
+                    events: {
+                        'image.beforeUpload': function (images) {
+                            // Останавливаем стандартную загрузку
+                            const editor = this;
+
+                            handleImageUpload(images)
+                                .then(imagePath => {
+                                    // Вставляем изображение по полученному пути
+                                    editor.image.insert(imagePath, null, null, editor.image.get());
+                                })
+                                .catch(error => {
+                                    console.error('Failed to upload image:', error);
+                                    // Показываем сообщение об ошибке
+                                    editor.popups.get('image.insert').find('.fr-error-message').text('Image upload failed');
+                                    editor.popups.get('image.insert').find('.fr-error-message').show();
+                                });
+
+                            // Возвращаем false, чтобы отменить стандартную загрузку
+                            return false;
+                        },
+                        'image.error': function (error, response) {
+                            console.error('Froala Editor image error:', error, response);
+                        }
+                    },
+
+                    imageDefaultWidth: 300,
+                    imagePaste: true,
                     videoUpload: true,
                     videoAllowedTypes: ["mp4", "webm", "ogg"],
                     tableResizer: true,

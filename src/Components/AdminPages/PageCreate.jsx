@@ -13,6 +13,7 @@ export default function PageCreate() {
     const [data, setData] = useState()
     const [lang, setLang] = useState('Uzb')
     const [loading, setLoading] = useState(false)
+    const [fileId, setFileId] = useState([])
 
     const [uzData, setUzData] = useState({
         name: "",
@@ -59,9 +60,11 @@ export default function PageCreate() {
                 contextRU: ruData?.context,
                 contextUZ: uzData?.context,
                 menuId: ID,
+                dataMediasId: fileId,
                 titleKIRIL: ozData?.name,
                 titleRU: ruData?.name,
                 titleUZ: uzData?.name
+
 
             }
             await axios.post(`/data/create`, newsData, {
@@ -81,6 +84,7 @@ export default function PageCreate() {
                 context: '',
                 name: ''
             })
+            setFileId([])
             Swal.fire({
                 title: 'Muvaffaqiyatli!',
                 icon: 'success',
@@ -131,7 +135,7 @@ export default function PageCreate() {
                     ))}
                 </div>
             </div>
-            {lang === 'Uzb' ? <Uz value={uzData} onChange={setUzData} /> : lang === 'Russ' ? <Ru value={ruData} onChange={setRuData} /> : lang === 'Kiril' ? <Oz value={ozData} onChange={setOzData} /> : ''}
+            {lang === 'Uzb' ? <Uz value={uzData} onChange={setUzData} FileArr={setFileId} /> : lang === 'Russ' ? <Ru FileArr={setFileId} value={ruData} onChange={setRuData} /> : lang === 'Kiril' ? <Oz FileArr={setFileId} value={ozData} onChange={setOzData} /> : ''}
 
             <div
 

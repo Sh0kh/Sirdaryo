@@ -5,6 +5,8 @@ import ReactLoading from 'react-loading';
 import NewsEdit from "../AdminComponents/News/NewsEdit";
 import NewsDelete from "../AdminComponents/News/NewsDelete";
 import PersonCreate from "../AdminComponents/Person/PersonCreate";
+import PersonEdit from "../AdminComponents/Person/PersonEdit";
+import PersonDelete from "../AdminComponents/Person/PersonDelete";
 
 export default function Person() {
     const [createModal, setCreateModal] = useState(false);
@@ -17,15 +19,17 @@ export default function Person() {
     const [totalElements, setTotalElements] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const itemsPerPage = 10;
+    const [category, setCategory] = useState('RAHBARIYAT')
 
     const fetchData = async (page) => {
         setLoading(true);
         try {
-            const response = await axios.get('/article/findAll', {
+            const response = await axios.get('/api/person/getAll', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
                 params: {
+                    category: category,
                     page: page - 1,
                     size: itemsPerPage
                 }
@@ -42,7 +46,7 @@ export default function Person() {
 
     useEffect(() => {
         fetchData(currentPage);
-    }, [currentPage]);
+    }, [currentPage, category]);
 
     const handlePageChange = (newPage) => {
         if (newPage > 0 && newPage <= totalPages) {
@@ -70,44 +74,55 @@ export default function Person() {
                         Rahbariyat yaratish
                     </button>
                 </div>
+                <div className="Admin__header__wrapper mb-[10px]">
+                    <label className="w-[300px]">
+                        <span className="text-[black] block text-[13px] cursor-pointer">Kategoriya</span>
+                        <select
+                            value={category || ""}
+                            onChange={(e) => setCategory(e.target.value)}
+                            className="py-[5px] w-full px-[10px] rounded-[5px] outline-MainColor border-[2px] border-black text-[black] bg-[white]"
+                        >
+                            <option value="RAHBARIYAT">Rahbariyat</option>
+                            <option value="APPARAT_XODIMLARI">Apparat xodimlari</option>
+                        </select>
+                    </label>
+                </div>
                 <div className="bg-white w-full rounded-lg shadow-lg overflow-hidden">
                     <table className="w-full border-collapse">
                         <thead>
                             <tr className="text-left text-sm md:text-base">
-                                <th className="p-3">№</th>
-                                <th className="p-3">Foto</th>
-                                <th className="p-3">Title</th>
-                                <th className="p-3">Info</th>
-                                <th className="p-3">Url</th>
-                                <th className="p-3">Type</th>
-                                <th className="p-3">Action</th>
+                                <th className="p-3 text-center">№</th>
+                                <th className="p-3 text-center">Foto</th>
+                                <th className="p-3 text-center">F.I.O</th>
+                                <th className="p-3 text-center">Telefon</th>
+                                <th className="p-3 text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {data?.map((news, index) => (
                                 <tr key={news.id} className="border-t hover:bg-gray-100 text-sm md:text-base">
-                                    <td className="p-3">{(currentPage - 1) * itemsPerPage + index + 1}</td>
-                                    <td className="p-3">
-                                        <img src={news.contentUrl} alt={news.contentUrl} className="w-[80px] h-[80px] object-cover rounded-md" />
+                                    <td className="p-3 text-center">{(currentPage - 1) * itemsPerPage + index + 1}</td>
+                                    <td className="p-3 text-center">
+                                        <img src={news.photoUrl} alt={news.photoUrl} className="w-[80px] h-[80px] mx-auto object-cover rounded-md" />
                                     </td>
-                                    <td className="p-3">{news.title}</td>
-                                    <td className="p-3 truncate max-w-[150px]">{news.description}</td>
+                                    <td className="p-3 text-center">{news.fullName}</td>
+                                    <td className="p-3 text-center">{news.phoneNumber}</td>
+
                                     <td className="p-3">
-                                        <a href={news.url} className="text-MainColor hover:underline">Link</a>
-                                    </td>
-                                    <td className="p-3">{news.mediaType === "MEDIA" ? 'Ijtimoiy tarmoq' : news?.mediaType === 'YOUTUBE_URL' ? "Youtube" : news?.mediaType === 'TEXT' ? "Matnli" : 'Boshqa'}</td>
-                                    <td className="p-3">
-                                        <div className="flex items-center gap-[5px]">
+                                        <div className="flex items-center justify-center gap-[5px]">
                                             <button
                                                 onClick={() => { setId(news?.id); setDeleteModal(true) }}
-
-                                                className="bg-red-500 text-white px-2 py-2 rounded-md text-xs hover:bg-red-700">
-                                                <svg className="text-[20px]" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"></path></svg>
-                                            </button>
+                                                className="bg-blue-gray-300 text-white px-2 py-2 rounded-md text-xs hover:bg-blue-gray-500">
+                                                <svg className="text-[20px]" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"></path></svg>                                            </button>
                                             <button
                                                 onClick={() => { setId(news?.id); setEditModal(true) }}
                                                 className="bg-yellow-500 text-white px-2 py-2 rounded-md text-xs hover:bg-yellow-700">
                                                 <svg className="text-[20px]" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M3 17.46v3.04c0 .28.22.5.5.5h3.04c.13 0 .26-.05.35-.15L17.81 9.94l-3.75-3.75L3.15 17.1q-.15.15-.15.36M20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83l3.75 3.75z"></path></svg>
+                                            </button>
+                                            <button
+                                                onClick={() => { setId(news?.id); setDeleteModal(true) }}
+                                                className="bg-red-500 text-white px-2 py-2 rounded-md text-xs hover:bg-red-700">
+                                                <svg className="text-[20px]" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"></path></svg>
                                             </button>
                                         </div>
                                     </td>
@@ -151,9 +166,9 @@ export default function Person() {
 
                 </div>
             </div>
-            <NewsDelete refresh={() => fetchData(currentPage)} isOpen={deleteModal} onClose={() => setDeleteModal(false)} data={Id} />
+            <PersonDelete refresh={() => fetchData(currentPage)} isOpen={deleteModal} onClose={() => setDeleteModal(false)} data={Id} />
             <PersonCreate refresh={() => fetchData(currentPage)} isOpen={createModal} onClose={() => setCreateModal(false)} />
-            <NewsEdit refresh={() => fetchData(currentPage)} isOpen={editModal} onClose={() => setEditModal(false)} data={Id} />
+            <PersonEdit refresh={() => fetchData(currentPage)} isOpen={editModal} onClose={() => setEditModal(false)} ID={Id} />
 
         </>
     );

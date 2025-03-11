@@ -1,7 +1,7 @@
 import Input from "../../UI/Inputs/Input";
 import RichBox from "../../UI/TextEditor/RichBox";
 
-export default function Oz({ value, onChange }) {
+export default function Oz({ value, onChange, FileArr }) {
     return (
         <div className="bg-white mt-[10px] p-[10px] shadow-lg rounded-[10px]">
             <Input
@@ -12,6 +12,7 @@ export default function Oz({ value, onChange }) {
             />
             <div className="mt-[20px]">
                 <RichBox
+                    FileArr={FileArr}
                     value={value.context}  // Привязываем значение
                     onChange={(newValue) => onChange({ ...value, context: newValue })} // Обновляем состояние
                 />

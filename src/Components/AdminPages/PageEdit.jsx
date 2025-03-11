@@ -13,6 +13,7 @@ export default function PageEdit() {
     const [data, setData] = useState()
     const [lang, setLang] = useState('Uzb')
     const [loading, setLoading] = useState(false)
+    const [id, setId] = useState(null)
 
     const [uzData, setUzData] = useState({
         name: "",
@@ -37,6 +38,7 @@ export default function PageEdit() {
             setUzData({name:response?.data?.object?.titleUZ, context:response?.data?.object?.contextUZ})
             setOzData({name:response?.data?.object?.titleKIRIL, context:response?.data?.object?.contextKIRIL})
             setRuData({name:response?.data?.object?.titleRU, context:response?.data?.object?.contextRU})
+            setId(response?.data?.object?.menuId)
         } catch (error) {
             console.log(error)
             if (error?.status === 401) {
@@ -59,7 +61,7 @@ export default function PageEdit() {
                 contextKIRIL: ozData?.context,
                 contextRU: ruData?.context,
                 contextUZ: uzData?.context,
-                menuId: ID,
+                menuId: id,
                 titleKIRIL: ozData?.name,
                 titleRU: ruData?.name,
                 titleUZ: uzData?.name
