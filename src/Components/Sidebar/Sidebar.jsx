@@ -1,20 +1,10 @@
 import { NavLink } from "react-router-dom";
-import { Accordion, AccordionHeader, AccordionBody } from "@material-tailwind/react";
-import { useState } from "react";
 import foto from '../../img/logo.jpg'
 export default function Sidebar() {
 
-    const [open, setOpen] = useState(0);
-
-    const handleOpen = (value) => {
-        setOpen(open === value ? 0 : value);
-    };
 
     return (
         <div className="h-[97%] w-[300px] shadow-2xl bg-white fixed mt-[10px] ml-[10px] p-[10px] rounded-[10px]">
-            {/* <div className="w-full h-[100px] rounded-[10px] bg-[#ebebebfc] flex items-center justify-center cursor-pointer hover:bg-[#d6d6d6] duration-300">
-                <h2 className="text-[20px] font-semibold">Logo</h2>
-            </div> */}
             <div>
                 <img className="rounded-[10px]" src={foto} alt="" />
             </div>
@@ -55,26 +45,6 @@ export default function Sidebar() {
                         </span>
                     </button>
                 </NavLink>
-                {/* <NavLink to={'/admin/media'}>
-                    <button className="group w-full mt-[10px] shadow-md duration-500 hover:shadow-xl scale-95 hover:scale-100 flex items-center gap-[10px] border-[2px] rounded-[10px] border-[#E5EFF9] p-[5px] hover:border-[#E6F0F9] hover:bg-[#F0F8FF]">
-                        <svg
-                            className="text-[40px] text-MainColor group-hover:text-[#0077b6] duration-300"
-                            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16"><path fill="currentColor" fillRule="evenodd" d="M13 2.5H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5M3 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm9 9.857L9.5 8l-2.476 2.83L5.5 9L4 10.8V12h8zM6.5 8a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3" clipRule="evenodd"></path></svg>
-                        <span className="text-[#70757b] group-hover:text-[#0077b6] duration-300">
-                            Ijtimoiy tarmoq
-                        </span>
-                    </button>
-                </NavLink> */}
-                {/* <NavLink to={'/admin/party'}>
-                    <button className="group w-full mt-[10px] shadow-md duration-500 hover:shadow-xl scale-95 hover:scale-100 flex items-center gap-[10px] border-[2px] rounded-[10px] border-[#E5EFF9] p-[5px] hover:border-[#E6F0F9] hover:bg-[#F0F8FF]">
-                        <svg
-                            className="text-[40px] text-MainColor group-hover:text-[#0077b6] duration-300"
-                            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} color="currentColor"><path d="M10.47 22c-3.992 0-5.989 0-7.23-1.172C2 19.657 2 17.771 2 14v-4c0-3.771 0-5.657 1.24-6.828C4.481 2 6.478 2 10.47 2h1.06c3.993 0 5.989 0 7.23 1.172C20 4.343 20 6.229 20 10M7 7h8m-8 5h6"></path><path d="M14 22c1.838-2.748 6.119-2.898 8 0m-2-7.071c0 1.065-.895 1.928-2 1.928s-2-.863-2-1.928S16.895 13 18 13s2 .864 2 1.929"></path></g></svg>
-                        <span className="text-[#70757b] group-hover:text-[#0077b6] duration-300">
-                            Partiya
-                        </span>
-                    </button>
-                </NavLink> */}
                 <NavLink to={'/admin/statistics'}>
                     <button className="group w-full mt-[10px] shadow-md duration-500 hover:shadow-xl scale-95 hover:scale-100 flex items-center gap-[10px] border-[2px] rounded-[10px] border-[#E5EFF9] p-[5px] hover:border-[#E6F0F9] hover:bg-[#F0F8FF]">
 
@@ -92,52 +62,32 @@ export default function Sidebar() {
                         <svg
                             className="text-[40px] text-MainColor group-hover:text-[#0077b6] duration-300"
                             xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M336 256c-20.56 0-40.44-9.18-56-25.84c-15.13-16.25-24.37-37.92-26-61c-1.74-24.62 5.77-47.26 21.14-63.76S312 80 336 80c23.83 0 45.38 9.06 60.7 25.52c15.47 16.62 23 39.22 21.26 63.63c-1.67 23.11-10.9 44.77-26 61C376.44 246.82 356.57 256 336 256m131.83 176H204.18a27.71 27.71 0 0 1-22-10.67a30.22 30.22 0 0 1-5.26-25.79c8.42-33.81 29.28-61.85 60.32-81.08C264.79 297.4 299.86 288 336 288c36.85 0 71 9 98.71 26.05c31.11 19.13 52 47.33 60.38 81.55a30.27 30.27 0 0 1-5.32 25.78A27.68 27.68 0 0 1 467.83 432M147 260c-35.19 0-66.13-32.72-69-72.93c-1.42-20.6 5-39.65 18-53.62c12.86-13.83 31-21.45 51-21.45s38 7.66 50.93 21.57c13.1 14.08 19.5 33.09 18 53.52c-2.87 40.2-33.8 72.91-68.93 72.91m65.66 31.45c-17.59-8.6-40.42-12.9-65.65-12.9c-29.46 0-58.07 7.68-80.57 21.62c-25.51 15.83-42.67 38.88-49.6 66.71a27.39 27.39 0 0 0 4.79 23.36A25.32 25.32 0 0 0 41.72 400h111a8 8 0 0 0 7.87-6.57c.11-.63.25-1.26.41-1.88c8.48-34.06 28.35-62.84 57.71-83.82a8 8 0 0 0-.63-13.39c-1.57-.92-3.37-1.89-5.42-2.89"></path></svg>
+
                         <span className="text-[#70757b] group-hover:text-[#0077b6] duration-300">
                             Rahbariyat
                         </span>
                     </button>
                 </NavLink>
-                {/* <Accordion open={open === 1} className="duration-500">
-                    <AccordionHeader
-                        className="group w-full mt-[10px] shadow-md duration-500 transition-all hover:shadow-xl scale-95 hover:scale-100 flex items-center justify-start gap-[10px] border-[2px] rounded-[10px] border-[#E5EFF9] p-[5px] hover:border-[#E6F0F9] hover:bg-[#F0F8FF]"
-                        onClick={() => handleOpen(1)}>
+                <NavLink to={'/admin/open-data'}>
+                    <button className="group w-full mt-[10px] shadow-md duration-500 hover:shadow-xl scale-95 hover:scale-100 flex items-center gap-[10px] border-[2px] rounded-[10px] border-[#E5EFF9] p-[5px] hover:border-[#E6F0F9] hover:bg-[#F0F8FF]">
                         <svg
                             className="text-[40px] text-MainColor group-hover:text-[#0077b6] duration-300"
-                            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M10 3H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1m10 0h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1M10 13H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1m7 0a4 4 0 1 1-3.995 4.2L13 17l.005-.2A4 4 0 0 1 17 13"></path></svg>
+                            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M255.993 8.045c-32.183-1.174-57.105 21.062-84.092 35.034c-36.705 21.758-74.502 41.83-110.476 64.716c-23.53 19.125-34.341 49.9-31.87 79.619c.137 52.692-.273 105.396.207 158.08c3.047 31.9 25.167 58.973 53.631 72.318c45.694 26.225 91.12 52.938 136.981 78.857c29.154 13.294 63.667 7.703 89.457-10.283c45.56-26.464 91.402-52.46 136.783-79.219c26.105-18.586 38.497-51.277 35.818-82.6c-.137-52.693.274-105.396-.207-158.08c-3.05-31.898-25.166-58.977-53.633-72.316c-45.695-26.22-91.129-52.915-136.988-78.837c-11.1-5.156-23.43-7.255-35.61-7.29m-28.695 132.69h57.4v230.52h-57.4zm72.231 50.174h57.372v180.346H299.53zm-144.452 94.08h57.39v86.266h-57.39z"></path></svg>
                         <span className="text-[#70757b] group-hover:text-[#0077b6] duration-300">
-                            Hokimiyat haqida
+                            Ochiq malumotlar
                         </span>
-                    </AccordionHeader>
-                    <AccordionBody className={'pl-[15px]'}>
-                        <NavLink
-                            className="group w-full  shadow-md duration-500 transition-all hover:shadow-xl scale-95 hover:scale-100 flex items-center justify-start gap-[10px] border-[2px] rounded-[10px] border-[#E5EFF9]  hover:border-[#E6F0F9] hover:bg-[#F0F8FF]"
-                            to={'/admin/person'}>
-                            <button className="block w-full text-left p-2 hover:bg-gray-100 rounded">
-                                Rahbariyat
-                            </button>
-                        </NavLink>
-                        <NavLink
-                            className="group w-full mt-[5px] shadow-md duration-500 transition-all hover:shadow-xl scale-95 hover:scale-100 flex items-center justify-start gap-[10px] border-[2px] rounded-[10px] border-[#E5EFF9]  hover:border-[#E6F0F9] hover:bg-[#F0F8FF]"
-                            to={'/admin/rekvizits'}>
-                            <button className="block w-full text-left p-2 hover:bg-gray-100 rounded">Rekvizitlar</button>
-                        </NavLink>
-                        <NavLink
-                            className="group w-full mt-[5px] shadow-md duration-500 transition-all hover:shadow-xl scale-95 hover:scale-100 flex items-center justify-start gap-[10px] border-[2px] rounded-[10px] border-[#E5EFF9] hover:border-[#E6F0F9] hover:bg-[#F0F8FF]"
-                            to={'/admin/userRec'}>
-                            <button className="block w-full text-left p-2 hover:bg-gray-100 rounded">
-                                Fuqarolarni qabul qilish tartibi
-                            </button>
-                        </NavLink>
-                        <NavLink
-                            className="group w-full mt-[10px] shadow-md duration-500 transition-all hover:shadow-xl scale-95 hover:scale-100 flex items-center justify-start gap-[10px] border-[2px] rounded-[10px] border-[#E5EFF9]  hover:border-[#E6F0F9] hover:bg-[#F0F8FF]"
-                            to={'/admin/orgStructure'}>
-                            <button className="block w-full text-left p-2 hover:bg-gray-100 rounded">
-                                Tashkiliy tuzilmasi
-                            </button>
-                        </NavLink>
-
-                    </AccordionBody>
-                </Accordion> */}
+                    </button>
+                </NavLink>
+                <NavLink to={'/admin/koruption'}>
+                    <button className="group w-full mt-[10px] shadow-md duration-500 hover:shadow-xl scale-95 hover:scale-100 flex items-center gap-[10px] border-[2px] rounded-[10px] border-[#E5EFF9] p-[5px] hover:border-[#E6F0F9] hover:bg-[#F0F8FF]">
+                        <svg
+                            className="text-[40px] text-MainColor group-hover:text-[#0077b6] duration-300"
+                            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fillRule="evenodd" d="M4 6.8V8H2.8A1.8 1.8 0 0 0 1 9.8v8.4A1.8 1.8 0 0 0 2.8 20h16.4a1.8 1.8 0 0 0 1.8-1.8V17h1.2c.992 0 1.8-.808 1.8-1.8V6.8c0-.992-.808-1.8-1.8-1.8H5.8C4.808 5 4 5.808 4 6.8M6 7v1h13.2A1.8 1.8 0 0 1 21 9.8V15h1V7zm3 7a2 2 0 1 1 4 0a2 2 0 0 1-4 0" clipRule="evenodd"></path></svg>
+                        <span className="text-[#70757b] group-hover:text-[#0077b6] duration-300">
+                            Korrupsiyaga qarshi kurashish
+                        </span>
+                    </button>
+                </NavLink>
             </div>
         </div>
     );
