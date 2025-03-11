@@ -1,3 +1,5 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -10,6 +12,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function Percent() {
+    const { t, i18n } = useTranslation();
+
+    const changeLanguage = (lng) => {
+      i18n.changeLanguage(lng);
+    };
+  
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
@@ -47,7 +55,7 @@ export default function Percent() {
         <section className="Percent mt-[30px]">
             <div className="Container">
                 <h1 className="border-l-MainColor border-l-[3px] pl-[10px] text-[28px] font-bold text-[#1F1F1F]">
-                    Yangiliklar
+                {t("Sirdaryo-news")}
                 </h1>
                 <div className="swiper-container mx-auto w-[100%] relative overflow-visible">
                     <Swiper
@@ -85,7 +93,7 @@ export default function Percent() {
                     >
                         {data?.map((i, index) => (
                             <SwiperSlide
-                            onClick={()=>{navigate(`/news/${i?.id}`)}}
+                            onClick={()=>{navigate(`/yangiliklar/${i?.id}`)}}
                              key={index} className="py-[30px]">
                                 <div className='bg-[white] cursor-pointer border-b-MainColor border-b-[5px] p-[15px] rounded-[10px] '>
                                     <h3 className='font-bold'>

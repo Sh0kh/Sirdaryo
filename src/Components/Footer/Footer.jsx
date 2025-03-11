@@ -20,11 +20,11 @@ export default function Footer() {
 
     const renderAccordionItems = () => {
         const sections = [
-            { title: 'Rahbariyat', links: 'superiors' },
+            { title: 'Rahbariyat', links: 'rahbariyat' },
             { title: 'Apparat xodimlari', links: 'apparat-xodimlari' },
-            { title: 'Yangiliklar', links: 'news' },
+            { title: 'Yangiliklar', links: 'yangiliklar' },
             { title: 'Korrupsiyaga qarshi kurashish', links: 'koruption' },
-            { title: 'Bog`lanish', links: 'contact' },
+            { title: 'Bog`lanish', links: 'boglanish' },
         ];
 
         return sections.map((section, index) => (
@@ -94,13 +94,18 @@ export default function Footer() {
                     <div className='w-[100%]'>
                         <h2 className="text-[18px] uppercase font-bold mt-[20px]">{t('Map')}</h2>
                         <NavLink to={'/'} className={'mt-[20px] block'}>
-                            <div className="FooterFotoMap relative w-full h-[200px] overflow-hidden">
-                                <img
-                                    src={Map}
-                                    alt="Foto"
-                                    className="FooterFotoMap w-full h-[180px] object-cover transition-transform duration-300 transform hover:scale-110"
-                                />
-                            </div>
+                          
+                            <div className="FooterFotoMap relative w-full h-[200px] overflow-hidden p-[20px] rounded-[10px]">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2931.542367733867!2d68.77849627589138!3d40.4915254714277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b2073345bb68b5%3A0xa4fb6a9dd9056c19!2sGuliston%20shahar!5e1!3m2!1sru!2s!4v1741610228473!5m2!1sru!2s"
+              width="100%"
+              height="100%"
+              style={{ border: "0" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
                         </NavLink>
                         <div className='w-[100%] mt-[10px]'>
                             <label htmlFor="Search" className='flex items-center justify-between bg-[white] p-[10px]'>

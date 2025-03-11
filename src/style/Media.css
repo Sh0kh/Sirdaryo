@@ -53,6 +53,12 @@
     .LinksMap__Wrapper{
         flex-direction: column;
     }
+    .contact_wr{
+        flex-wrap: wrap;
+    }
+    .contact_if{
+        height: 300px;
+    }
     .HomeMap, .HomeLinks{
         margin: 0 auto;
     }

@@ -73,7 +73,7 @@ export default function Hero() {
             </div>
           ) : (
             data.map((news) => (
-              <NavLink key={news.id} className="w-[100%]" onClick={() => localStorage.setItem("newsId", news.id)} to={`/news/${news.id}`}>
+              <NavLink key={news.id} className="w-[100%]" onClick={() => localStorage.setItem("newsId", news.id)} to={`/yangiliklar/${news.id}`}>
                 <div className="News__hero__card cursor-pointer bg-[white] mb-[10px] rounded-[10px] p-[20px] w-[100%] shadow-xl flex items-start gap-[30px]">
                   <img
                     className="block rounded-[10px] w-[300px] h-[200px] object-cover"

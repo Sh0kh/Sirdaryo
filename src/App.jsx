@@ -62,16 +62,16 @@ function App() {
           </Route>
           <Route element={<MainLayout />}>
             <Route index element={<Home />} />
-            <Route path='/superiors' element={<Superiors />} />
+            <Route path='/rahbariyat' element={<Superiors />} />
             <Route path='/apparat-xodimlari' element={<ApparatWorkers />} />
-            <Route path="/news" element={<News />} />
+            <Route path="/yangiliklar" element={<News />} />
             <Route path="/koruption" element={<Koruption />} />
             <Route path="/ochiq-malumot" element={<OpenData />} />
-            <Route path="/rekvizits" element={<Rekvizit />} />
+            <Route path="/rekvizitlar" element={<Rekvizit />} />
             <Route path="/fuqarolarni-qabul-qilish-tartibi" element={<UserRec />} />
             <Route path="/tashkili-tuzilmasi" element={<OrgStructure />} />
-            <Route path="/news/:id" element={<NewsItems />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/yangiliklar/:id" element={<NewsItems />} />
+            <Route path="/boglanish" element={<Contact />} />
             <Route path="/sahifa/:ID" element={<Page />} />
           </Route>
         </Route>

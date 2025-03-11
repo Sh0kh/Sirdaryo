@@ -229,7 +229,7 @@ export default function Header({ isActiveModal }) {
                             )}
                         </div>
                     ))}
-                    <NavLink to={'/superiors'}>
+                    <NavLink to={'/rahbariyat'}>
                         <button
                             className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
                         >
@@ -243,7 +243,7 @@ export default function Header({ isActiveModal }) {
                             Apparat xodimlari
                         </button>
                     </NavLink>
-                    <NavLink to={'/news'}>
+                    <NavLink to={'/yangiliklar'}>
                         <button
                             className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
                         >
@@ -264,7 +264,7 @@ export default function Header({ isActiveModal }) {
                             Ochiq ma'lumot
                         </button>
                     </NavLink>
-                    <NavLink to={'/contact'}>
+                    <NavLink to={'/boglanish'}>
                         <button
                             className="px-4 py-2 text-white hover:text-black duration-500 font-semibold hover:bg-gray-200 rounded transition-all"
                         >

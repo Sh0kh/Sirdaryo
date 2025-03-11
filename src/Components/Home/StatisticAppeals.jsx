@@ -1,7 +1,12 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function StatisticAppeals() {
+       const { t, i18n } = useTranslation();
+    
+    
+
     const [data, setData] = useState({});
     const [counts, setCounts] = useState({
         requestsCount: 0,
@@ -62,7 +67,7 @@ export default function StatisticAppeals() {
         <section className="StatisticAppeals bg-[white] py-[30px]">
             <div className="Container">
                 <h1 className="border-l-MainColor border-l-[3px] pl-[10px] text-[28px] font-bold text-[#1F1F1F]">
-                    Sirdaryo raqamlarda
+                    {t("Sirdaryo-raqam")}
                 </h1>
                 <div className="StatisticAppeals__wrapper flex items-center justify-between gap-[40px]">
                     {Object.keys(counts).map((key, index) => (

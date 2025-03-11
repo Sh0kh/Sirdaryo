@@ -145,7 +145,7 @@ export default function Hero() {
                         </div>
                         <div class="Home__Hero__Grid grid grid-cols-2 gap-5 mt-[10px]">
                             {lastData?.map((i, index) => (
-                                <NavLink key={index} to={`/news/${i?.id}`}>
+                                <NavLink key={index} to={`/yangiliklar/${i?.id}`}>
                                     <div className="bg-[white] p-[10px] shadow-lg hover:shadow-2xl duration-500 cursor-pointer rounded-[5px]">
                                         <h3 className='hover:text-MainColor duration-300 font-bold border-b-[2px] pb-[10px] border-b-[#c7c7c7e0]'>
                                             {i?.title}

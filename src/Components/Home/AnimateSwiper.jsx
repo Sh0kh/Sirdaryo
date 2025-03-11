@@ -4,6 +4,7 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
+import { useTranslation } from "react-i18next";
 
 const slides = [
     { src: "https://sirdaryo.uz/uploads/2021/04/gr3.jpg", alt: "Инфографика 3", type: "video" },
@@ -16,11 +17,13 @@ const slides = [
 ];
 
 export default function AnimateSwiper() {
+           const { t, i18n } = useTranslation();
+    
     return (
         <section className="AnimateSwiper bg-white py-6">
             <div className="container mx-auto px-4">
                 <h1 className="border-l-4 border-mainColor pl-3 text-2xl font-bold text-gray-900 mb-4">
-                    Mediateka
+                {t("sirdaryo-med")}
                 </h1>
                 <Swiper
                     effect="coverflow"

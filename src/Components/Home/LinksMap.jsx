@@ -10,13 +10,15 @@ import Icon8 from '../../img/icon-8.png'
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap-trial/ScrollTrigger';
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 
 
 export default function LinksMap() {
-
+        const { t, i18n } = useTranslation();
+    
     useGSAP(() => {
         gsap.fromTo('.HomeMap',
             {
@@ -58,47 +60,47 @@ export default function LinksMap() {
     const links = [
         {
             foto: Icon2,
-            text: "O‘zbekiston Respublikasi Prezidenti rasmiy sayti",
+            text: t("president_official"),
             link: 'https://president.uz/ru'
         },
         {
             foto: Icon3,
-            text: "O‘zbekiston Respublikasi Oliy Majlisi Qonunchilik palatasi",
+            text:  t("parliament"),
             link: 'https://parliament.gov.uz/ru/'
         },
         {
             foto: Icon4,
-            text: "Yagona interaktiv davlat xizmatlari portali",
+            text:  t("interactive_services"),
             link: 'https://my.gov.uz/ru'
         },
         {
             foto: Icon5,
-            text: "O'zbekiston Respublikasi Tashqi ishlar Vazirligi",
+            text:   t("foreign_affairs"),
             link: 'https://mfa.uz/ru'
         },
         {
             foto: Icon6,
-            text: "O‘zbekiston Respublikasi Prezidenti matbuot xizmati",
+            text:  t("president_press"),
             link: 'https://president.uz/uz'
         },
         {
             foto: Icon7,
-            text: "O‘zbekiston Respublikasi Oliy Majlisining senati",
+            text:  t("senate"),
             link: 'https://www.senat.uz/'
         },
         {
             foto: Icon1,
-            text: "Jamoaviy murojaatlar Portali",
+            text: t("public_petitions"),
             link: 'https://petition.gov.uz/uz'
         },
         {
             foto: Icon8,
-            text: "Milliy huquqiy internet portali",
+            text: t("legal_portal"),
             link: 'https://huquqiyportal.uz/'
         },
         {
             foto: Icon6,
-            text: "O'zbekiston Respublikasi Hukumat portali",
+            text: t("government_portal"),
             link: 'https://gov.uz/oz'
         },
     ]
@@ -109,13 +111,15 @@ export default function LinksMap() {
                 <div className="LinksMap__Wrapper flex items-start gap-[50px]">
                     <div className='HomeMap'>
                         <h1 className="border-l-MainColor mb-[30px] border-l-[3px] pl-[10px] text-[28px] font-bold text-[#1F1F1F]">
-                            Ma’muriy hududiy tuzilish
+                        {t("tuzilish")}
+
                         </h1>
                         <img className='w-[500px] rounded-[10px] cursor-pointer' src={FotoMap} alt="" />
                     </div>
                     <div className='w-[full] HomeLinks'>
                         <h1 className="border-l-MainColor mb-[30px] border-l-[3px] pl-[10px] text-[28px] font-bold text-[#1F1F1F]">
-                            Foydali havolalar
+                        {t("Links")}
+                           
                         </h1>
                         <div className="LinksMap__Wrapper__grid grid grid-cols-2 gap-7">
                             {links?.map((i, index) => (
