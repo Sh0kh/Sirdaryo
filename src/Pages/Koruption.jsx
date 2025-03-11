@@ -29,9 +29,6 @@ export default function Koruption() {
                     Korrupsiyaga qarshi kurashish
                 </h1>
                 <div className="cursor-pointer bg-[white] mb-[10px] rounded-[10px] p-[20px] w-[100%] shadow-xl">
-                    <h2 className="font-bold text-[20px]">
-                        Korrupsiya holatlarini barvaqt aniqlash va ularning oldini olishga doir ichki idoraviy hujjatlar
-                    </h2>
                     <div className="flex items-center justify-between border-[2px] border-[black] shadow-xl px-[20px] py-[10px] rounded-[10px] mt-[20px] hover:border-MainColor duration-500 hover:shadow-2xl
                     ">
                         <span>
@@ -60,56 +57,7 @@ export default function Koruption() {
                         </a>
                     </div>
                 </div>
-                <div className="cursor-pointer bg-[white] mt-[30px] rounded-[10px] p-[20px] w-[100%] shadow-xl">
-                    <h2 className="font-bold text-[20px]">
-                        Korrupsiya holatlarini barvaqt aniqlash va ularning oldini olishga doir ichki idoraviy hujjatlar
-                    </h2>
-                    <div className="flex items-center justify-between border-[2px] border-[black] shadow-xl px-[20px] py-[10px] rounded-[10px] mt-[20px] hover:border-MainColor duration-500 hover:shadow-2xl
-                    ">
-                        <span>
-                            Viloyat hokimligida boshqaruv apparatida vakant lavozimlarga kadrlarni ochiq mustaqil tanlov asosida ishga qabul qilish tizimini joriy etishga oid                        </span>
-                        <a className="text-[30px] hover:text-MainColor duration-300" href="http://" download target="_blank" rel="noopener noreferrer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 15.575q-.2 0-.375-.062T11.3 15.3l-3.6-3.6q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L11 12.15V5q0-.425.288-.712T12 4t.713.288T13 5v7.15l1.875-1.875q.3-.3.713-.288t.712.313q.275.3.288.7t-.288.7l-3.6 3.6q-.15.15-.325.213t-.375.062M6 20q-.825 0-1.412-.587T4 18v-2q0-.425.288-.712T5 15t.713.288T6 16v2h12v-2q0-.425.288-.712T19 15t.713.288T20 16v2q0 .825-.587 1.413T18 20z"></path></svg>
-                        </a>
-                    </div>
-                </div>
-                <div className="cursor-pointer bg-[white] mt-[30px] rounded-[10px] p-[20px] w-[100%] shadow-xl">
-                    <h2 className="font-bold text-[20px]">
-                        Korrupsiyaga nisbatan murosasizlik munosabatini belgilovchi hujjatlar
-                    </h2>
-                    <div className="flex items-center justify-between border-[2px] border-[black] shadow-xl px-[20px] py-[10px] rounded-[10px] mt-[20px] hover:border-MainColor duration-500 hover:shadow-2xl
-                    ">
-                        <span>
-                            Korrupsiyaga oid huquqbuzarlik haqida xabar bergan yoki korrupsiyaga qarshi kurashishga boshqa tarzda ko‘maklashgan shaxslarni rag‘batlantirish tartibi to‘g‘risidagi nizom
-                        </span>
-                        <a className="text-[30px] hover:text-MainColor duration-300" href="http://" download target="_blank" rel="noopener noreferrer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 15.575q-.2 0-.375-.062T11.3 15.3l-3.6-3.6q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L11 12.15V5q0-.425.288-.712T12 4t.713.288T13 5v7.15l1.875-1.875q.3-.3.713-.288t.712.313q.275.3.288.7t-.288.7l-3.6 3.6q-.15.15-.325.213t-.375.062M6 20q-.825 0-1.412-.587T4 18v-2q0-.425.288-.712T5 15t.713.288T6 16v2h12v-2q0-.425.288-.712T19 15t.713.288T20 16v2q0 .825-.587 1.413T18 20z"></path></svg>
-                        </a>
-                    </div>
-                </div>
-                <div className="cursor-pointer bg-[white] mt-[30px] rounded-[10px] p-[20px] w-[100%] shadow-xl">
-                    <h2 className="font-bold text-[20px]">
-                        Manfaatlar to‘qnashuvi holatlari haqida hisobot
-                    </h2>
-                    <div className="flex items-center justify-between border-[2px] border-[black] shadow-xl px-[20px] py-[10px] rounded-[10px] mt-[20px] hover:border-MainColor duration-500 hover:shadow-2xl
-                    ">
-                        <span>
-                            Viloyat hokimligi Korrupsiyaga qarshi kurashish ichki nazorat sho‘basi tomonidan 2023-yil davomida amalga oshirilgan ishlar ishlar
-                        </span>
-                        <a className="text-[30px] hover:text-MainColor duration-300" href="http://" download target="_blank" rel="noopener noreferrer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 15.575q-.2 0-.375-.062T11.3 15.3l-3.6-3.6q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L11 12.15V5q0-.425.288-.712T12 4t.713.288T13 5v7.15l1.875-1.875q.3-.3.713-.288t.712.313q.275.3.288.7t-.288.7l-3.6 3.6q-.15.15-.325.213t-.375.062M6 20q-.825 0-1.412-.587T4 18v-2q0-.425.288-.712T5 15t.713.288T6 16v2h12v-2q0-.425.288-.712T19 15t.713.288T20 16v2q0 .825-.587 1.413T18 20z"></path></svg>
-                        </a>
-                    </div>
-                    <div className="flex items-center justify-between border-[2px] border-[black] shadow-xl px-[20px] py-[10px] rounded-[10px] mt-[20px] hover:border-MainColor duration-500 hover:shadow-2xl
-                    ">
-                        <span>
-                            O‘zbekiston Respublikasi Prezidentining 2024-yil 5-iyundagi PQ-210-sonli qarori ijrosi
-                        </span>
-                        <a className="text-[30px] hover:text-MainColor duration-300" href="http://" download target="_blank" rel="noopener noreferrer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 15.575q-.2 0-.375-.062T11.3 15.3l-3.6-3.6q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L11 12.15V5q0-.425.288-.712T12 4t.713.288T13 5v7.15l1.875-1.875q.3-.3.713-.288t.712.313q.275.3.288.7t-.288.7l-3.6 3.6q-.15.15-.325.213t-.375.062M6 20q-.825 0-1.412-.587T4 18v-2q0-.425.288-.712T5 15t.713.288T6 16v2h12v-2q0-.425.288-.712T19 15t.713.288T20 16v2q0 .825-.587 1.413T18 20z"></path></svg>
-                        </a>
-                    </div>
-                </div>
+
             </div>
         </div>
     )
