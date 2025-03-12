@@ -27,29 +27,26 @@ export default function Header({ isActiveModal }) {
         gsap.fromTo('.Header',
             {
                 opacity: 0,
-                y: -100, // Начальное положение слева
+                y: -100,
             },
             {
                 opacity: 1,
-                y: 0, // Двигаем в исходное положение
+                y: 0,
                 duration: 1.3,
                 ease: "power1.inOut"
             }
         )
     });
 
-    // Функция для обновления времени
     const updateTime = () => {
         const now = new Date();
 
-        // Получение дня недели
         const days = {
             uz: ['Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba', 'Yakshanba'],
             ru: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
             oz: ['Душанба', 'Сешанба', 'Чоршанба', 'Пайшанба', 'Жума', 'Шанба', 'Якшанба'],
         };
 
-        // Получение месяца
         const months = {
             uz: ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun', 'Iyul', 'Avgust', 'Sentabr', 'Oktabr', 'Noyabr', 'Dekabr'],
             ru: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
@@ -69,7 +66,6 @@ export default function Header({ isActiveModal }) {
         setOpenMenu(openMenu === index ? null : index);
     };
 
-    // Закрытие меню при клике вне зоны меню
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -129,10 +125,7 @@ export default function Header({ isActiveModal }) {
                         <h2 className='hover:underline text-[13px]'>
                             {t('eye-none')}
                         </h2>
-                    </div>
-                    <button className='text-[25px]' >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14"></path></svg>
-                    </button>
+                    </div>  
                     <div className="header__t__lan flex items-center gap-[15px]">
                         <button
                             className={`text-[12px] hover:underline ${i18n.language === 'oz' ? 'font-bold  underline' : ''}`}

@@ -31,6 +31,11 @@ import OpenData from "./Pages/OpenData";
 import ApparatWorkers from "./Pages/ApparatWorkers";
 import AdminOpenData from "./Components/AdminPages/AdminOpenData";
 import AdminKoruption from "./Components/AdminPages/AdminKoruption";
+import AdminNewsCreate from "./Components/AdminPages/AdminNewsCreate";
+import AdminNewsEdit from "./Components/AdminPages/AdminNewsEdit";
+import PersonCreate from "./Components/AdminPages/PersonCreate";
+import PersonEdit from "./Components/AdminPages/PersonEdit";
+import PersonInfo from "./Components/AdminPages/PersonInfo";
 
 function App() {
   return (
@@ -58,6 +63,13 @@ function App() {
             <Route path="/admin/page/:ID" element={<SubMenuData />} />
             <Route path="/admin/open-data" element={<AdminOpenData />} />
             <Route path="/admin/koruption" element={<AdminKoruption />} />
+
+            <Route path="/admin/news/create" element={<AdminNewsCreate />} />
+            <Route path="/admin/news/edit/:ID" element={<AdminNewsEdit />} />
+
+            <Route path="/admin/person/create" element={<PersonCreate />} />
+            <Route path="/admin/person/edit/:ID" element={<PersonEdit />} />
+            <Route path="/admin/person/info/:ID" element={<PersonInfo />} />
 
           </Route>
           <Route element={<MainLayout />}>

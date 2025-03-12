@@ -45,7 +45,6 @@ export default function PersonCreate({ isOpen, onClose, refresh }) {
             }
         });
 
-        console.log(data)
 
         try {
             await axios.post(`/api/person/create`, formData, {
@@ -248,7 +247,6 @@ export default function PersonCreate({ isOpen, onClose, refresh }) {
                                 value={formData?.order}
                                 onChange={handleChange}
                                 inputText={"Buyurtma"} placeholder={"...."} />
-
                         </div>
                     </div>
                     <button
