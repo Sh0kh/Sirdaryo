@@ -27,7 +27,7 @@ export default function NewsCreate({ isOpen, onClose, refresh }) {
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
         if (file) {
-            setImage(file); // Храним сам файл (Blob), а не base64
+            setImage(file); 
         }
     };
 

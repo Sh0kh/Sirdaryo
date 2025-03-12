@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Input from "../../UI/Inputs/Input";
-import BigModal from "../../UI/Modals/BigModal";
 import Swal from 'sweetalert2';
 import axios from "axios";
 import NormalModal from "../../UI/Modals/NormalModal";
@@ -14,7 +13,7 @@ export default function CreateMedia({ isOpen, onClose, refresh }) {
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
         if (file) {
-            setImage(file); // Храним сам файл (Blob), а не base64
+            setImage(file); 
         }
     };
 

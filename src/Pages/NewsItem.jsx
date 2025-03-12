@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import ReactLoading from 'react-loading';
 
 export default function NewsItems() {
   const { id } = useParams();
@@ -10,18 +11,13 @@ export default function NewsItems() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("Current ID:", id); // id ni konsolda ko‘rish uchun
-
     const fetchNewsById = async () => {
       if (!id) {
-        console.error("ID topilmadi!");
         setLoading(false);
         return;
       }
-
       try {
         const response = await axios.get(`/article/findById/${id}`);
-        console.log("API Response:", response.data);
         setNews(response.data.object || null);
       } catch (error) {
         console.error("Xatolik yuz berdi:", error);
@@ -47,7 +43,11 @@ export default function NewsItems() {
   }, []);
 
   if (loading) {
-    return <p className="text-center text-lg py-10">Yuklanmoqda...</p>;
+    return (
+      <div className='flex items-center justify-center h-screen w-full'>
+        <ReactLoading type="spinningBubbles" color='#1466B3' height={100} width={100} />
+      </div>
+    );
   }
 
   if (!news) {
@@ -61,15 +61,11 @@ export default function NewsItems() {
           <h1 className="News__Hero__title border-l-MainColor mb-[30px] border-l-[3px] pl-[10px] text-[28px] font-bold text-[#1F1F1F]">
             {news?.title}
           </h1>
-          <div className="News__hero__card cursor-pointer bg-[white] rounded-[10px] p-[20px] w-[100%] shadow-xl">
-            <img
-              className="block mx-auto rounded-[10px] w-[600px] h-[400px] object-cover"
-              src={news?.contentUrl || "https://via.placeholder.com/600x400"}
-              alt="Foto"
-            />
-            <div className="w-[70%] mx-auto my-[30px] h-[3px] bg-MainColor"></div>
-            <p>{news?.description}</p>
-          </div>
+          <div
+            className="News__hero__card cursor-pointer bg-[white] rounded-[10px] p-[20px] w-[100%] shadow-xl"
+            dangerouslySetInnerHTML={{ __html: news?.context }}
+          />
+
         </div>
       </section>
     </main>

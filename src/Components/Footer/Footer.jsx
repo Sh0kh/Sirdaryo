@@ -1,9 +1,7 @@
 import logo from '../../img/logo.png'
 import { useTranslation } from 'react-i18next';
-import { Accordion, AccordionHeader, AccordionBody } from "@material-tailwind/react";
 import { useState } from "react";
 import { NavLink } from 'react-router-dom';
-import Map from '../../img/map.png'
 
 
 export default function Footer() {
@@ -94,25 +92,18 @@ export default function Footer() {
                     <div className='w-[100%]'>
                         <h2 className="text-[18px] uppercase font-bold mt-[20px]">{t('Map')}</h2>
                         <NavLink to={'/'} className={'mt-[20px] block'}>
-                          
-                            <div className="FooterFotoMap relative w-full h-[200px] overflow-hidden p-[20px] rounded-[10px]">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2931.542367733867!2d68.77849627589138!3d40.4915254714277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b2073345bb68b5%3A0xa4fb6a9dd9056c19!2sGuliston%20shahar!5e1!3m2!1sru!2s!4v1741610228473!5m2!1sru!2s"
-              width="100%"
-              height="100%"
-              style={{ border: "0" }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
+                            <div className="FooterFotoMap relative w-full h-[200px] overflow-hidden rounded-[10px]">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2931.542367733867!2d68.77849627589138!3d40.4915254714277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b2073345bb68b5%3A0xa4fb6a9dd9056c19!2sGuliston%20shahar!5e1!3m2!1sru!2s!4v1741610228473!5m2!1sru!2s"
+                                    width="100%"
+                                    height="100%"
+                                    style={{ border: "0" }}
+                                    allowFullScreen
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                ></iframe>
+                            </div>
                         </NavLink>
-                        <div className='w-[100%] mt-[10px]'>
-                            <label htmlFor="Search" className='flex items-center justify-between bg-[white] p-[10px]'>
-                                <input type="text" placeholder='Izlash' className='w-[100%] outline-none text-[black]' />
-                                <svg className='text-[black] opacity-[0.7]' xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14"></path></svg>
-                            </label>
-                        </div>
                     </div>
                 </div>
             </div>

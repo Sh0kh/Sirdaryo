@@ -1,13 +1,11 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-export default function StatisticAppeals() {
+export default function StatisticAppeals({Stdata}) {
        const { t, i18n } = useTranslation();
     
     
 
-    const [data, setData] = useState({});
     const [counts, setCounts] = useState({
         requestsCount: 0,
         viewedRequestsCount: 0,
@@ -16,26 +14,16 @@ export default function StatisticAppeals() {
     });
     const [progress, setProgress] = useState(0);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("statistic");
-                setData(response?.data?.object || {});
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, []);
+ 
 
     useEffect(() => {
-        if (data.requestsCount) {
-            animateCount("requestsCount", data.requestsCount);
-            animateCount("viewedRequestsCount", data.viewedRequestsCount);
-            animateCount("pendingRequestsCount", data.pendingRequestsCount);
-            animateCount("percentViewedRequestsCount", data.percentViewedRequestsCount);
+        if (Stdata) {
+            animateCount("requestsCount", Stdata?.object?.requestsCount);
+            animateCount("viewedRequestsCount", Stdata?.object?.viewedRequestsCount);
+            animateCount("pendingRequestsCount", Stdata?.object?.pendingRequestsCount);
+            animateCount("percentViewedRequestsCount", Stdata?.object?.percentViewedRequestsCount);
         }
-    }, [data]);
+    }, [Stdata]);
 
     const animateCount = (key, targetValue) => {
         const duration = 2000; // Время анимации в миллисекундах

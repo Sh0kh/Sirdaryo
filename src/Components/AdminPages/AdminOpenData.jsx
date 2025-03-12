@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ReactLoading from 'react-loading';
-import PersonEdit from "../AdminComponents/Person/PersonEdit";
-import PersonDelete from "../AdminComponents/Person/PersonDelete";
 import OpenDataCreate from "../AdminComponents/OpenData/OpenDataCreate";
 import OpenDataUpdate from "../AdminComponents/OpenData/OpenDataUpdate";
 import OpenDataDelete from "../AdminComponents/OpenData/OpenDataDelete";
